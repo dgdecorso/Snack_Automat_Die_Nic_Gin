@@ -1,0 +1,206 @@
+{
+  "main": {
+    "id": "e68306aacb995aa8",
+    "type": "split",
+    "children": [
+      {
+        "id": "e81969e677686278",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "22c954ffa81b426e",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "graph",
+              "state": {},
+              "pinned": true,
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
+            }
+          },
+          {
+            "id": "35508141c136aace",
+            "type": "leaf",
+            "state": {
+              "type": "image",
+              "state": {
+                "file": "Snackautomat Java/Zweifel.png"
+              },
+              "icon": "lucide-image",
+              "title": "Zweifel"
+            }
+          },
+          {
+            "id": "e2fccf9a98f46e2f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Snackautomat Java/Bilder.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Bilder"
+            }
+          }
+        ],
+        "currentTab": 2
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "af253bbf78fd6011",
+    "type": "split",
+    "children": [
+      {
+        "id": "90f237821bdbfb5f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "fdc4a889807baa08",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "d391691f414a15cc",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "b18c21dfc2c39e2b",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "93f5d38083703e8b",
+    "type": "split",
+    "children": [
+      {
+        "id": "f713e40c50553a24",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "6a89c939f09363af",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Snackautomat Java/Bilder.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Bilder"
+            }
+          },
+          {
+            "id": "c95154f41040eeb8",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Snackautomat Java/Bilder.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from Bilder"
+            }
+          },
+          {
+            "id": "2d785fc92489db15",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "d3e0cc8090d3b694",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Snackautomat Java/Bilder.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Bilder"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "e2fccf9a98f46e2f",
+  "lastOpenFiles": [
+    "Snackautomat Java/Zweifel.png",
+    "Snackautomat Java/New Piskel.png",
+    "Snackautomat Java/Bilder.md",
+    "Snackautomat Java/Bazooka Gum.png",
+    "Snackautomat Java/Takis.png",
+    "Snackautomat Java/Blauband.png",
+    "Snackautomat Java/Papes.png"
+  ]
+}
