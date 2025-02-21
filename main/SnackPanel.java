@@ -61,8 +61,8 @@ public class SnackPanel extends JPanel implements Runnable{
             lastTime = currentTime;
 
             if (delta >= 1) {
-                update();
-                SwingUtilities.invokeLater(() -> repaint()); // ✅ repaint() auf Swing-Thread setzen
+                update(); //Update = alle Logik wird aktualisiert
+                SwingUtilities.invokeLater(this::repaint); // repaint() das JFrame wird erneut gezeichnet
                 delta--;
             }
         }
