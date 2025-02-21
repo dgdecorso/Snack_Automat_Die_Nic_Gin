@@ -1,9 +1,8 @@
-import javax.imageio.ImageIO;
+package main;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.util.Objects;
 
 public class SnackPanel extends JPanel implements Runnable{
     //BACKGROUND
@@ -40,11 +39,11 @@ public class SnackPanel extends JPanel implements Runnable{
         machineThread.start();
     }
     public void loadBackground() {
-        try {
+       /* try {
             backgroundImage = ImageIO.read(Objects.requireNonNull(getClass().getResource("/background/image (3).png")));
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
     }
     public void drawBackground(Graphics2D g2) {
         g2.drawImage(backgroundImage, 0, 0, screenWidth, screenHeight, null);
