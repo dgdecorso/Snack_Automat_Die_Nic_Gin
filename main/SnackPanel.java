@@ -19,6 +19,7 @@ public class SnackPanel extends JPanel implements Runnable{
     public int screenCols = 6;
     public int screenWidth = tileSize * screenCols;
     public int screenHeight = tileSize * screenRows;
+    public ObjectManager obj = new ObjectManager(this);
 
     //FPS
     int FPS = 60;
@@ -32,10 +33,11 @@ public class SnackPanel extends JPanel implements Runnable{
         this.setDoubleBuffered(true);
         this.setFocusable(true);
         this.requestFocusInWindow();
-        loadBackground();
+
     }
     public void setupMachine() {
-
+        loadBackground();
+        obj.load();
     }
     public void startMachineThread() {
         machineThread = new Thread(this);
@@ -81,5 +83,6 @@ public class SnackPanel extends JPanel implements Runnable{
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         drawBackground(g2);
+        obj.draw(g2);
     }
 }
