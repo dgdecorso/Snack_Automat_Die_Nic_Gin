@@ -24,7 +24,5 @@ public class Main {
         sp.setupMachine();
         sp.startMachineThread();
 
-
-
     }
 }
