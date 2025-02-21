@@ -1,20 +1,14 @@
 {
   "main": {
-    "id": "c825224827ce12ed",
     "type": "split",
     "children": [
       {
-        "id": "0913d774029b5a0e",
         "type": "tabs",
         "children": [
           {
-            "id": "c01c43757bbaa4f1",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
               "icon": "lucide-file",
-              "title": "New tab"
             }
           }
         ]
@@ -23,15 +17,12 @@
     "direction": "vertical"
   },
   "left": {
-    "id": "30698a3a9a2d2f07",
     "type": "split",
     "children": [
       {
-        "id": "b9e5dfe8621f228b",
         "type": "tabs",
         "children": [
           {
-            "id": "f2307df95c066c24",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -44,7 +35,6 @@
             }
           },
           {
-            "id": "d88f199be9b4b4bd",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -61,7 +51,6 @@
             }
           },
           {
-            "id": "a951160a717629f8",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -77,15 +66,12 @@
     "width": 300
   },
   "right": {
-    "id": "c8cc709a4f34703e",
     "type": "split",
     "children": [
       {
-        "id": "13bfe41b35ea41da",
         "type": "tabs",
         "children": [
           {
-            "id": "539dff79d2091924",
             "type": "leaf",
             "state": {
               "type": "backlink",
@@ -103,7 +89,6 @@
             }
           },
           {
-            "id": "e190f2865afbde13",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
@@ -116,7 +101,6 @@
             }
           },
           {
-            "id": "57ce8ac24607939f",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -131,7 +115,6 @@
             }
           },
           {
-            "id": "bf7b21cf1689ab0f",
             "type": "leaf",
             "state": {
               "type": "outline",
@@ -161,6 +144,4 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "c01c43757bbaa4f1",
-  "lastOpenFiles": []
 }
