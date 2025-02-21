@@ -1,90 +1,37 @@
 {
   "main": {
-    "id": "e68306aacb995aa8",
+    "id": "61308d70b606ed17",
     "type": "split",
     "children": [
       {
-        "id": "e81969e677686278",
+        "id": "9d28d8ce9980744b",
         "type": "tabs",
         "children": [
           {
-            "id": "22c954ffa81b426e",
+            "id": "5220af4166655210",
             "type": "leaf",
-            "pinned": true,
             "state": {
-              "type": "graph",
+              "type": "empty",
               "state": {},
-              "pinned": true,
-              "icon": "lucide-git-fork",
-              "title": "Graph view"
-            }
-          },
-          {
-            "id": "b201a366f506feb3",
-            "type": "leaf",
-            "state": {
-              "type": "image",
-              "state": {
-                "file": "Snackautomat Java/Bazooka Gum.png"
-              },
-              "icon": "lucide-image",
-              "title": "Bazooka Gum"
-            }
-          },
-          {
-            "id": "cfada1f93342bfbb",
-            "type": "leaf",
-            "state": {
-              "type": "image",
-              "state": {
-                "file": "Snackautomat Java/Bazooka Gum.png"
-              },
-              "icon": "lucide-image",
-              "title": "Bazooka Gum"
-            }
-          },
-          {
-            "id": "73ab4acc914f78f3",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Snackautomat Java/Bilder.md",
-                "mode": "source",
-                "source": false
-              },
               "icon": "lucide-file",
-              "title": "Bilder"
-            }
-          },
-          {
-            "id": "29190a0065ec5446",
-            "type": "leaf",
-            "state": {
-              "type": "image",
-              "state": {
-                "file": "Snackautomat Java/Blauband.png"
-              },
-              "icon": "lucide-image",
-              "title": "Blauband"
+              "title": "New tab"
             }
           }
-        ],
-        "currentTab": 4
+        ]
       }
     ],
     "direction": "vertical"
   },
   "left": {
-    "id": "af253bbf78fd6011",
+    "id": "0f8ffb376e266391",
     "type": "split",
     "children": [
       {
-        "id": "90f237821bdbfb5f",
+        "id": "d2c94cffed6caa05",
         "type": "tabs",
         "children": [
           {
-            "id": "fdc4a889807baa08",
+            "id": "3b4272407ee3d300",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -97,7 +44,7 @@
             }
           },
           {
-            "id": "d391691f414a15cc",
+            "id": "4f30f9978a88bbdb",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -114,7 +61,7 @@
             }
           },
           {
-            "id": "b18c21dfc2c39e2b",
+            "id": "df0855e79d1b1a3c",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -130,20 +77,19 @@
     "width": 300
   },
   "right": {
-    "id": "93f5d38083703e8b",
+    "id": "c6dda9ca693f2e1d",
     "type": "split",
     "children": [
       {
-        "id": "f713e40c50553a24",
+        "id": "f45ef1354b6bdaea",
         "type": "tabs",
         "children": [
           {
-            "id": "6a89c939f09363af",
+            "id": "31f5b2b9fb56e047",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Snackautomat Java/Blauband.png",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -153,25 +99,24 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Blauband"
+              "title": "Backlinks"
             }
           },
           {
-            "id": "c95154f41040eeb8",
+            "id": "49db8638fd1178ce",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Snackautomat Java/Blauband.png",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Blauband"
+              "title": "Outgoing links"
             }
           },
           {
-            "id": "2d785fc92489db15",
+            "id": "5a5daa8a4bcd182a",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -186,18 +131,17 @@
             }
           },
           {
-            "id": "d3e0cc8090d3b694",
+            "id": "649831b7170d50a3",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "Snackautomat Java/Blauband.png",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Blauband"
+              "title": "Outline"
             }
           }
         ]
@@ -217,15 +161,6 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "29190a0065ec5446",
-  "lastOpenFiles": [
-    "Snackautomat Java/Bilder.md",
-    "Snackautomat Java/Bazooka Gum.png",
-    "Snackautomat Java/powerade.png",
-    "Snackautomat Java/Blauband.png",
-    "Snackautomat Java/Zweifel.png",
-    "Snackautomat Java/New Piskel.png",
-    "Snackautomat Java/Takis.png",
-    "Snackautomat Java/Papes.png"
-  ]
+  "active": "5220af4166655210",
+  "lastOpenFiles": []
 }
