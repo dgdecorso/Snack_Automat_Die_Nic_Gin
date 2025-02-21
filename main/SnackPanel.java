@@ -1,9 +1,8 @@
-import javax.imageio.ImageIO;
+package main;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.util.Objects;
 
 public class SnackPanel extends JPanel implements Runnable{
     //BACKGROUND
@@ -44,7 +43,9 @@ public class SnackPanel extends JPanel implements Runnable{
             backgroundImage = ImageIO.read(Objects.requireNonNull(getClass().getResource("/background/image (3).png")));
         } catch (IOException e) {
             e.printStackTrace();
+<<<<<<< HEAD:SnackPanel.java
         } */
+
     }
     public void drawBackground(Graphics2D g2) {
         g2.drawImage(backgroundImage, 0, 0, screenWidth, screenHeight, null);
@@ -62,8 +63,8 @@ public class SnackPanel extends JPanel implements Runnable{
             lastTime = currentTime;
 
             if (delta >= 1) {
-                update();
-                SwingUtilities.invokeLater(() -> repaint()); // ✅ repaint() auf Swing-Thread setzen
+                update(); //Update = alle Logik wird aktualisiert
+                SwingUtilities.invokeLater(this::repaint); // repaint() das JFrame wird erneut gezeichnet
                 delta--;
             }
         }
