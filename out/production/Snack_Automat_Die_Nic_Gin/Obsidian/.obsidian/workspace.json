@@ -1,37 +1,32 @@
 {
   "main": {
-    "id": "f6f49ae25f54ed2d",
     "type": "split",
     "children": [
       {
-        "id": "f57c2c7bc23a2965",
         "type": "tabs",
         "children": [
           {
-            "id": "46d46f7f040dd080",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
             }
           }
-        ]
       }
     ],
     "direction": "vertical"
   },
   "left": {
-    "id": "d99879da4ade4450",
     "type": "split",
     "children": [
       {
-        "id": "4831cce173b5be41",
         "type": "tabs",
         "children": [
           {
-            "id": "8e15595835517a65",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -44,7 +39,6 @@
             }
           },
           {
-            "id": "ce66430c423b676e",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -61,7 +55,6 @@
             }
           },
           {
-            "id": "c48bec2502352a6c",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -77,15 +70,12 @@
     "width": 300
   },
   "right": {
-    "id": "373dc1761e9835a9",
     "type": "split",
     "children": [
       {
-        "id": "8d46c063eb5508dc",
         "type": "tabs",
         "children": [
           {
-            "id": "e76907115dd5e16e",
             "type": "leaf",
             "state": {
               "type": "backlink",
@@ -104,7 +94,6 @@
             }
           },
           {
-            "id": "19d4aa36f9f569a1",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
@@ -118,7 +107,6 @@
             }
           },
           {
-            "id": "cc63b49ef2bf1724",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -133,7 +121,6 @@
             }
           },
           {
-            "id": "7b2c42b4065a7296",
             "type": "leaf",
             "state": {
               "type": "outline",
@@ -164,8 +151,6 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "46d46f7f040dd080",
   "lastOpenFiles": [
-    "Snackautomat Java/Bilder.md"
   ]
 }
