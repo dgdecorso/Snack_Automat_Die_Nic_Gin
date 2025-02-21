@@ -1,8 +1,11 @@
 package main;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.util.Objects;
 
 public class SnackPanel extends JPanel implements Runnable{
     //BACKGROUND
@@ -39,17 +42,17 @@ public class SnackPanel extends JPanel implements Runnable{
         machineThread.start();
     }
     public void loadBackground() {
-       /* try {
-            backgroundImage = ImageIO.read(Objects.requireNonNull(getClass().getResource("/background/image (3).png")));
+       try {
+            backgroundImage = ImageIO.read(Objects.requireNonNull(getClass().getResource("/res/New Piskel.png")));
         } catch (IOException e) {
             e.printStackTrace();
-<<<<<<< HEAD:SnackPanel.java
-        } */
+
+        }
 
     }
     public void drawBackground(Graphics2D g2) {
         g2.drawImage(backgroundImage, 0, 0, screenWidth, screenHeight, null);
-    }
+    } //
     @Override
     public void run() {
         double drawInterval = 1000000000 / FPS;
