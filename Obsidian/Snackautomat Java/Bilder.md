@@ -1,14 +1,14 @@
 Getränke:
 Hygieneartikel:
-![[image (2).png]]
-![[image (3).png]]
+![[Blauband.png]]
+![[Papes.png]]
 Snacks:
 ![[Skittles.png]]
 ![[M&M's.png]]
-![[New Piskel 1.png]]
+![[Zweifel.png]]
 ![[pringles.png]]
-![[image (1).png]] 
-![[image.png]]
+![[Bazooka Gum.png]] 
+![[Takis.png]]
 Getränke:
 ![[sprite.png]]
 ![[powerade.png]]

@@ -1,3 +1,5 @@
+package main;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -19,10 +21,9 @@ public class Main {
         window.setLocationRelativeTo(null);
         window.setVisible(true);
 
+
         sp.setupMachine();
         sp.startMachineThread();
-
-
 
     }
 }
