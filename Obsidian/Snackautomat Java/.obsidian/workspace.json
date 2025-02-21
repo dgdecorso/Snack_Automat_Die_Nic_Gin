@@ -34,7 +34,7 @@
             }
           },
           {
-            "id": "0b5b0f48e8cfe824",
+            "id": "77a897f63612c5f2",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -46,9 +46,23 @@
               "icon": "lucide-file",
               "title": "Bilder"
             }
+          },
+          {
+            "id": "6c2863f483fd6491",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Snackautomat.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Snackautomat"
+            }
           }
         ],
-        "currentTab": 2
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -121,7 +135,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Bilder.md",
+                "file": "Snackautomat.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -131,7 +145,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Bilder"
+              "title": "Backlinks for Snackautomat"
             }
           },
           {
@@ -140,12 +154,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Bilder.md",
+                "file": "Snackautomat.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Bilder"
+              "title": "Outgoing links from Snackautomat"
             }
           },
           {
@@ -169,13 +183,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Bilder.md",
+                "file": "Snackautomat.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Bilder"
+              "title": "Outline of Snackautomat"
             }
           }
         ]
@@ -195,20 +209,19 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "0b5b0f48e8cfe824",
+  "active": "6c2863f483fd6491",
   "lastOpenFiles": [
+    "Bilder.md",
+    "image (3).png",
     "Skittles.png",
     "M&M's.png",
     "RedBull.png",
     "tiki drink.png",
     "New Piskel 1.png",
     "New Piskel.png",
-    "image (3).png",
     "powerade.png",
     "pringles.png",
     "sprite.png",
-    "image.png",
-    "Snackautomat.md",
-    "Bilder.md"
+    "Snackautomat.md"
   ]
 }

@@ -1,6 +1,7 @@
 Getränke:
 Hygieneartikel:
-![[image (2).png]]![[image (3).png]]
+![[image (2).png]]
+![[image (3).png]]
 Snacks:
 ![[Skittles.png]]
 ![[M&M's.png]]
