@@ -11,10 +11,14 @@
             "id": "46d46f7f040dd080",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "Untitled.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "Untitled"
             }
           }
         ]
@@ -166,6 +170,7 @@
   },
   "active": "46d46f7f040dd080",
   "lastOpenFiles": [
+    "Untitled.md",
     "Snackautomat Java/Bilder.md"
   ]
 }
