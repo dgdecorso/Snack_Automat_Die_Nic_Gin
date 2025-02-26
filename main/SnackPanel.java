@@ -29,7 +29,7 @@ public class SnackPanel extends JPanel implements Runnable{
     Thread machineThread;
     public SnackPanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
-        this.setBackground(new Color(137, 137, 137, 255));
+        this.setBackground(new Color(54, 36, 25, 255));
         this.setDoubleBuffered(true);
         this.setFocusable(true);
         this.requestFocusInWindow();
@@ -45,7 +45,7 @@ public class SnackPanel extends JPanel implements Runnable{
     }
     public void loadBackground() {
        try {
-            backgroundImage = ImageIO.read(Objects.requireNonNull(getClass().getResource("/res/New Piskel (1).png")));
+            backgroundImage = ImageIO.read(Objects.requireNonNull(getClass().getResource("/res/New Piskel.png")));
         } catch (IOException e) {
             e.printStackTrace();
 
@@ -73,11 +73,6 @@ public class SnackPanel extends JPanel implements Runnable{
                 delta--;
             }
         }
-    }
-
-    public void numPad() {
-
-
     }
 
     private void update() {

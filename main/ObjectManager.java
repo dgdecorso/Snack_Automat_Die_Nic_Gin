@@ -55,8 +55,6 @@ public class ObjectManager {
         // Update-Logik hinzufügen, falls nötig
     }
 
-
-
     public void draw(Graphics2D g2) {
         if (objImage[0][0] != null) {
             g2.drawImage(objImage[0][0], sp.tileSize, sp.tileSize, null);
