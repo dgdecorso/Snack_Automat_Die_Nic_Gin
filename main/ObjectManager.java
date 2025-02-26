@@ -8,23 +8,23 @@ import java.io.IOException;
 
 public class ObjectManager {
     SnackPanel sp;
-    private final BufferedImage[][] objImage;
-    public Objects[][] object;
+    private final BufferedImage[] objImage; // Jetzt 1D
+    public Objects[] object; // Jetzt 1D
 
     public ObjectManager(SnackPanel sp) {
         this.sp = sp;
-        object = new Objects[30][30];
-        objImage = new BufferedImage[30][30];
+        object = new Objects[30]; // Eindimensionales Array für Objekte
+        objImage = new BufferedImage[30]; // Eindimensionales Array für Bilder
 
         load();
     }
 
     public int getLocationX(int x) {
-        return (16 * sp.scale) + (x * sp.tileSize) - (2 * sp.scale);
+        return (16 * sp.scale) + ((x) * sp.tileSize);
     }
 
     public int getLocationY(int y) {
-        return (16 * sp.scale) + (y * sp.tileSize) - (2 * sp.scale);
+        return (16 * sp.scale) + ((y) * sp.tileSize) + (8 * sp.scale);
     }
 
     public void load() {
@@ -51,16 +51,9 @@ public class ObjectManager {
             g2d.drawImage(scaledImg, 0, 0, null);
             g2d.dispose();
 
-            // Stelle sicher, dass Arrays initialisiert sind
-            for (int y = 0; y < 30; y++) {
-                for (int x = 0; x < 30; x++) {
-                    objImage[y][x] = null;
-                }
-            }
-
-            // Bild speichern
-            objImage[index][0] = vImg.getSnapshot();
-            object[index][0] = new Objects(vImg.getSnapshot());
+            // Bild speichern in 1D-Array
+            objImage[index] = vImg.getSnapshot();
+            object[index] = new Objects(vImg.getSnapshot());
 
             System.out.println("Geladen: " + imageName + " an Index: " + index);
         } catch (IOException e) {
@@ -73,13 +66,14 @@ public class ObjectManager {
         // Falls später eine Update-Logik benötigt wird
     }
 
-    public void draw(Graphics2D g2, int x, int y) {
-        if (x >= 0 && x < objImage.length && y >= 0 && y < objImage[x].length && objImage[x][y] != null) {
-            int screenX = getLocationX(x);
+    public void draw(Graphics2D g2, int x, int y, int index) {
+        // Sicherheit prüfen, um Abstürze zu vermeiden
+        if (index >= 0 && index < objImage.length && objImage[index] != null) {
+            int screenX = getLocationX(x); // Korrektur für Positionierung
             int screenY = getLocationY(y);
-            g2.drawImage(objImage[x][y], screenX, screenY, null);
+            g2.drawImage(objImage[index], screenX, screenY, null);
         } else {
-            System.out.println("WARNUNG: objImage[" + x + "][" + y + "] ist null!");
+            System.out.println("WARNUNG: Kein Bild für Index " + index);
         }
     }
 }

@@ -28,6 +28,9 @@ public class SnackPanel extends JPanel implements Runnable {
     // SYSTEM
     Thread machineThread;
 
+    //Objekte
+    public int index = 0;
+
     public SnackPanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(new Color(54, 36, 25, 255));
@@ -48,7 +51,7 @@ public class SnackPanel extends JPanel implements Runnable {
 
     public void loadBackground() {
         try {
-            backgroundImage = ImageIO.read(Objects.requireNonNull(getClass().getResource("/res/New Piskel.png")));
+            backgroundImage = ImageIO.read(Objects.requireNonNull(getClass().getResource("/res/New Piskel (1).png")));
             if (backgroundImage == null) {
                 System.out.println("FEHLER: Hintergrundbild konnte nicht geladen werden!");
             }
@@ -93,10 +96,13 @@ public class SnackPanel extends JPanel implements Runnable {
         Graphics2D g2 = (Graphics2D) g;
         drawBackground(g2);
 
-        for (int y = 0; y < screenRows; y++) {
-            for (int x = 0; x < screenCols; x++) {
-                obj.draw(g2, x, y);
+        //Objects
+        for (int y = 0; y < 5; y++) {
+            for (int x = 0; x < 4; x++) {
+                obj.draw(g2, x, y, index);
+                index++;
             }
         }
+        index = 0;
     }
 }
