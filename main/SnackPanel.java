@@ -10,6 +10,11 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class SnackPanel extends JPanel implements Runnable {
+   //CASHPANEL
+
+    public double cash = 23.43;
+
+
     // BACKGROUND
     private BufferedImage backgroundImage;
     private BufferedImage NumPadImage;
@@ -31,6 +36,10 @@ public class SnackPanel extends JPanel implements Runnable {
 
     // SYSTEM
     Thread machineThread;
+
+    //States
+    public boolean isFalling = false;
+    public int fallingObject = 999;
 
     // NumPad
     private NumPad numPad; // Korrekt als Instanzvariable gespeichert
@@ -133,6 +142,9 @@ public class SnackPanel extends JPanel implements Runnable {
 
     private void update() {
         // Game logic updates (if needed)
+        if (isFalling) {
+          //  obj.fallAnimation();
+        }
     }
 
     @Override
@@ -170,7 +182,7 @@ public class SnackPanel extends JPanel implements Runnable {
     private void toggleNumPad() {
         SwingUtilities.invokeLater(() -> {
             if (numPad == null) {
-                numPad = new NumPad();
+                numPad = new NumPad(this); // `this` als `SnackPanel`-Referenz übergeben
             }
 
             if (numPad.isVisible()) {
@@ -180,4 +192,5 @@ public class SnackPanel extends JPanel implements Runnable {
             }
         });
     }
+
 }
