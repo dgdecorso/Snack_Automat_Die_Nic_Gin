@@ -57,6 +57,7 @@ public class SnackPanel extends JPanel implements Runnable {
 
                 // Check if click is on NumPad image
                 if (isNumPadClicked(mouseX, mouseY)) {
+
                     openNumPad();
                 }
             }
