@@ -19,6 +19,7 @@ public class SnackPanel extends JPanel implements Runnable{
     public int screenCols = 6;
     public int screenWidth = tileSize * screenCols;
     public int screenHeight = tileSize * screenRows;
+    public ObjectManager obj = new ObjectManager(this);
 
     //FPS
     int FPS = 60;
@@ -28,14 +29,15 @@ public class SnackPanel extends JPanel implements Runnable{
     Thread machineThread;
     public SnackPanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
-        this.setBackground(new Color(54, 36, 25, 255));
+        this.setBackground(new Color(137, 137, 137, 255));
         this.setDoubleBuffered(true);
         this.setFocusable(true);
         this.requestFocusInWindow();
-        loadBackground();
+
     }
     public void setupMachine() {
-
+        loadBackground();
+        obj.load();
     }
     public void startMachineThread() {
         machineThread = new Thread(this);
@@ -43,7 +45,7 @@ public class SnackPanel extends JPanel implements Runnable{
     }
     public void loadBackground() {
        try {
-            backgroundImage = ImageIO.read(Objects.requireNonNull(getClass().getResource("/res/New Piskel.png")));
+            backgroundImage = ImageIO.read(Objects.requireNonNull(getClass().getResource("/res/New Piskel (1).png")));
         } catch (IOException e) {
             e.printStackTrace();
 
@@ -73,6 +75,11 @@ public class SnackPanel extends JPanel implements Runnable{
         }
     }
 
+    public void numPad() {
+
+
+    }
+
     private void update() {
 
     }
@@ -81,5 +88,6 @@ public class SnackPanel extends JPanel implements Runnable{
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         drawBackground(g2);
+        obj.draw(g2);
     }
 }

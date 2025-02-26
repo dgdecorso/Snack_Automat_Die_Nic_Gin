@@ -1,37 +1,82 @@
 {
   "main": {
-    "id": "169d4c9048755728",
+    "id": "e95ada45a099220b",
     "type": "split",
     "children": [
       {
-        "id": "1c70af92c48627fd",
+        "id": "ea93946e168de977",
         "type": "tabs",
         "children": [
           {
-            "id": "556699b17b224b00",
+            "id": "80f4184ea925e029",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "Snackautomat.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "Snackautomat"
+            }
+          },
+          {
+            "id": "bb35d27eb666688f",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "graph",
+              "state": {},
+              "pinned": true,
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
+            }
+          },
+          {
+            "id": "77a897f63612c5f2",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Bilder.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Bilder"
+            }
+          },
+          {
+            "id": "6c2863f483fd6491",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Snackautomat.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Snackautomat"
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
   },
   "left": {
-    "id": "8e4bf5865678477d",
+    "id": "cca2347a13dd1167",
     "type": "split",
     "children": [
       {
-        "id": "7262c128155d5325",
+        "id": "645dbf16b616a3bf",
         "type": "tabs",
         "children": [
           {
-            "id": "a7ff3ed7c5dccc10",
+            "id": "0892b5efb30c3833",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -44,7 +89,7 @@
             }
           },
           {
-            "id": "8e889e9772fa51b3",
+            "id": "563ef789c5d97151",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -61,7 +106,7 @@
             }
           },
           {
-            "id": "dd8d455bfe28c5fe",
+            "id": "18dd3486d6c29338",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -77,19 +122,20 @@
     "width": 300
   },
   "right": {
-    "id": "b0a07ede0e46ffd5",
+    "id": "ffc4d16dab3600b8",
     "type": "split",
     "children": [
       {
-        "id": "5c72106d48ca9fa3",
+        "id": "c33a7e9dced90182",
         "type": "tabs",
         "children": [
           {
-            "id": "7c8c536b5f10983e",
+            "id": "f3584d25661c8f70",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Snackautomat.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -99,24 +145,25 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks"
+              "title": "Backlinks for Snackautomat"
             }
           },
           {
-            "id": "4fed552e7e2434cd",
+            "id": "ec71c09e4568141b",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "Snackautomat.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links"
+              "title": "Outgoing links from Snackautomat"
             }
           },
           {
-            "id": "21c828d1edcea3aa",
+            "id": "9004a7df1ee47d09",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -131,17 +178,18 @@
             }
           },
           {
-            "id": "13c1fc24bf789919",
+            "id": "86807ef4bbf8e4fe",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
+                "file": "Snackautomat.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline"
+              "title": "Outline of Snackautomat"
             }
           }
         ]
@@ -161,38 +209,19 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "a7ff3ed7c5dccc10",
+  "active": "6c2863f483fd6491",
   "lastOpenFiles": [
-    "out/production/Snack_Automat_Die_Nic_Gin/main/ObjectManager.class",
-    "main/ObjectManager.java~",
-    "main/UtilityTool.java",
-    "main/ObjectManager.java",
-    "out/production/Snack_Automat_Die_Nic_Gin/main/UtilityTool.class",
-    "out/production/Snack_Automat_Die_Nic_Gin/main/SnackPanel.class",
-    "out/production/Snack_Automat_Die_Nic_Gin/main/Objects.class",
-    "main/Objects.java~",
-    "out/production/Snack_Automat_Die_Nic_Gin/main/Main.class",
-    "out/production/Snack_Automat_Die_Nic_Gin/main",
-    "out/production/Snack_Automat_Die_Nic_Gin/Untitled.canvas",
-    "out/production/Snack_Automat_Die_Nic_Gin/res/OBJ/sprite.png",
-    "out/production/Snack_Automat_Die_Nic_Gin/res/OBJ/Zweifel.png",
-    "out/production/Snack_Automat_Die_Nic_Gin/res/OBJ/tiki drink.png",
-    "out/production/Snack_Automat_Die_Nic_Gin/res/OBJ/Takis.png",
-    "out/production/Snack_Automat_Die_Nic_Gin/res/OBJ/Skittles.png",
-    "out/production/Snack_Automat_Die_Nic_Gin/res/OBJ/pringles.png",
-    "out/production/Snack_Automat_Die_Nic_Gin/res/OBJ/RedBull.png",
-    "out/production/Snack_Automat_Die_Nic_Gin/res/OBJ/powerade.png",
-    "out/production/Snack_Automat_Die_Nic_Gin/res/OBJ/M&M's.png",
-    "out/production/Snack_Automat_Die_Nic_Gin/res/OBJ/Papes.png",
-    "out/production/Snack_Automat_Die_Nic_Gin/res/OBJ",
-    "out/production/Snack_Automat_Die_Nic_Gin/Obsidian/Snackautomat Java/Bilder.md",
-    "out/production/Snack_Automat_Die_Nic_Gin/Obsidian/Snackautomat Java/Snackautomat.md",
-    "out/production/Snack_Automat_Die_Nic_Gin/2025-02-21.md",
-    "Obsidian/Snackautomat Java/Snackautomat.md",
-    "Obsidian/Snackautomat Java/Bilder.md",
-    "Untitled.canvas",
-    "Obsidian/Untitled.md",
-    "2025-02-21.md",
-    "out/production/Snack_Automat_Die_Nic_Gin/README.md"
+    "Bilder.md",
+    "image (3).png",
+    "Skittles.png",
+    "M&M's.png",
+    "RedBull.png",
+    "tiki drink.png",
+    "New Piskel 1.png",
+    "New Piskel.png",
+    "powerade.png",
+    "pringles.png",
+    "sprite.png",
+    "Snackautomat.md"
   ]
 }

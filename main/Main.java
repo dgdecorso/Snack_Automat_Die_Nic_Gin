@@ -11,7 +11,7 @@ public class Main {
         JFrame window = new JFrame();
         window.setDefaultCloseOperation((JFrame.EXIT_ON_CLOSE));
         window.setResizable(false);
-        window.setTitle("Snack Automat");
+        window.setTitle("Snackautomat");
         window.setBackground(Color. white);
 
         SnackPanel sp = new SnackPanel();
@@ -21,10 +21,9 @@ public class Main {
         window.setLocationRelativeTo(null);
         window.setVisible(true);
 
+
         sp.setupMachine();
         sp.startMachineThread();
-
-
 
     }
 }
