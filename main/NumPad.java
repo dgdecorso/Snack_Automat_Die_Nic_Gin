@@ -31,8 +31,8 @@ public class NumPad extends JFrame {
         }
 
         // Sondertasten (0, Clear, OK)
-        addButton(buttonPanel, "0");
         addButton(buttonPanel, "C");
+        addButton(buttonPanel, "0");
         addButton(buttonPanel, "OK");
 
         add(buttonPanel, BorderLayout.CENTER);
