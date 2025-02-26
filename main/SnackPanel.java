@@ -3,6 +3,8 @@ package main;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
@@ -10,6 +12,7 @@ import java.util.Objects;
 public class SnackPanel extends JPanel implements Runnable {
     // BACKGROUND
     private BufferedImage backgroundImage;
+    private BufferedImage NumPadImage;
 
     // SCREEN
     public int originalTileSize = 32;
@@ -28,19 +31,41 @@ public class SnackPanel extends JPanel implements Runnable {
     // SYSTEM
     Thread machineThread;
 
-    //Objekte
-    public int index = 0;
+    // NumPad Position
+    private final int padX = 440;
+    private final int padY = 2 * tileSize;
+    private final int padWidth;
+    private final int padHeight;
 
     public SnackPanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
-        this.setBackground(new Color(54, 36, 25, 255));
+        this.setBackground(new Color(137, 137, 137, 255));
         this.setDoubleBuffered(true);
         this.setFocusable(true);
         this.requestFocusInWindow();
+
+        // Calculate NumPad Image size
+        padWidth = screenWidth / 4;
+        padHeight = screenHeight / 5;
+
+        // Add MouseListener for clicks
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int mouseX = e.getX();
+                int mouseY = e.getY();
+
+                // Check if click is on NumPad image
+                if (isNumPadClicked(mouseX, mouseY)) {
+                    openNumPad();
+                }
+            }
+        });
     }
 
     public void setupMachine() {
         loadBackground();
+        loadNumPad();
         obj.load();
     }
 
@@ -52,18 +77,25 @@ public class SnackPanel extends JPanel implements Runnable {
     public void loadBackground() {
         try {
             backgroundImage = ImageIO.read(Objects.requireNonNull(getClass().getResource("/res/New Piskel (1).png")));
-            if (backgroundImage == null) {
-                System.out.println("FEHLER: Hintergrundbild konnte nicht geladen werden!");
-            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void loadNumPad() {
+        try {
+            NumPadImage = ImageIO.read(Objects.requireNonNull(getClass().getResource("/res/NumClick.png")));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public void drawBackground(Graphics2D g2) {
-        if (backgroundImage != null) {
-            g2.drawImage(backgroundImage, 0, 0, screenWidth, screenHeight, null);
-        }
+        g2.drawImage(backgroundImage, 0, 0, screenWidth, screenHeight, null);
+    }
+
+    public void drawPad(Graphics2D g2) {
+        g2.drawImage(NumPadImage, padX, padY, padWidth, padHeight, null);
     }
 
     @Override
@@ -87,7 +119,7 @@ public class SnackPanel extends JPanel implements Runnable {
     }
 
     private void update() {
-        obj.update();
+        // Game logic updates (if needed)
     }
 
     @Override
@@ -95,14 +127,24 @@ public class SnackPanel extends JPanel implements Runnable {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         drawBackground(g2);
+        drawPad(g2);
+        obj.draw(g2);
+    }
 
-        //Objects
-        for (int y = 0; y < 5; y++) {
-            for (int x = 0; x < 4; x++) {
-                obj.draw(g2, x, y, index);
-                index++;
-            }
-        }
-        index = 0;
+    /**
+     * Check if the mouse click happened inside the NumPad image area.
+     */
+    private boolean isNumPadClicked(int x, int y) {
+        return (x >= padX && x <= padX + padWidth) && (y >= padY && y <= padY + padHeight);
+    }
+
+    /**
+     * Open the NumPad window when the image is clicked.
+     */
+    private void openNumPad() {
+        SwingUtilities.invokeLater(() -> {
+            NumPad numPad = new NumPad();
+            numPad.setVisible(true);
+        });
     }
 }
