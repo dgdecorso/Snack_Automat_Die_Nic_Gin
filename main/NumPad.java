@@ -1,6 +1,7 @@
 package main;
 
 import javax.swing.*;
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,6 +33,7 @@ public class NumPad extends JFrame {
         // Sondertasten (0, Clear)
         addButton(buttonPanel, "0");
         addButton(buttonPanel, "C");
+        addButton(buttonPanel, "OK");
 
         add(buttonPanel, BorderLayout.CENTER);
     }
@@ -52,6 +54,13 @@ public class NumPad extends JFrame {
                 displayField.setText(""); // Eingabe zurücksetzen
             } else {
                 displayField.setText(displayField.getText() + command);
+            }
+
+            if (command.equals("OK")) {
+                String enteredNumber = displayField.getText();
+                NumPanel.getStoredNumber(enteredNumber);
+                displayField.setText("Confirmed");
+
             }
         }
     }
