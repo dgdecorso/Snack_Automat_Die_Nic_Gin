@@ -1,14 +1,20 @@
 {
   "main": {
+    "id": "169d4c9048755728",
     "type": "split",
     "children": [
       {
+        "id": "1c70af92c48627fd",
         "type": "tabs",
         "children": [
           {
+            "id": "556699b17b224b00",
             "type": "leaf",
             "state": {
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
+              "title": "New tab"
             }
           }
         ]
@@ -17,12 +23,15 @@
     "direction": "vertical"
   },
   "left": {
+    "id": "8e4bf5865678477d",
     "type": "split",
     "children": [
       {
+        "id": "7262c128155d5325",
         "type": "tabs",
         "children": [
           {
+            "id": "a7ff3ed7c5dccc10",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -35,6 +44,7 @@
             }
           },
           {
+            "id": "8e889e9772fa51b3",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -51,6 +61,7 @@
             }
           },
           {
+            "id": "dd8d455bfe28c5fe",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -66,12 +77,15 @@
     "width": 300
   },
   "right": {
+    "id": "b0a07ede0e46ffd5",
     "type": "split",
     "children": [
       {
+        "id": "5c72106d48ca9fa3",
         "type": "tabs",
         "children": [
           {
+            "id": "7c8c536b5f10983e",
             "type": "leaf",
             "state": {
               "type": "backlink",
@@ -89,6 +103,7 @@
             }
           },
           {
+            "id": "4fed552e7e2434cd",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
@@ -101,6 +116,7 @@
             }
           },
           {
+            "id": "21c828d1edcea3aa",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -115,6 +131,7 @@
             }
           },
           {
+            "id": "13c1fc24bf789919",
             "type": "leaf",
             "state": {
               "type": "outline",
@@ -144,4 +161,38 @@
       "command-palette:Open command palette": false
     }
   },
+  "active": "a7ff3ed7c5dccc10",
+  "lastOpenFiles": [
+    "main/NumPad.java~",
+    "out/production/Snack_Automat_Die_Nic_Gin/main/UtilityTool.class",
+    "out/production/Snack_Automat_Die_Nic_Gin/main/Objects.class",
+    "out/production/Snack_Automat_Die_Nic_Gin/main/SnackPanel.class",
+    "out/production/Snack_Automat_Die_Nic_Gin/main/ObjectManager.class",
+    "out/production/Snack_Automat_Die_Nic_Gin/main/NumPad.class",
+    "out/production/Snack_Automat_Die_Nic_Gin/main/NumPad$ButtonClickListener.class",
+    "out/production/Snack_Automat_Die_Nic_Gin/main/Main.class",
+    "out/production/Snack_Automat_Die_Nic_Gin/main/change.class",
+    "out/production/Snack_Automat_Die_Nic_Gin/main",
+    "res/OBJ/Zweifel.png",
+    "res/OBJ/tiki drink.png",
+    "res/OBJ/Takis.png",
+    "res/OBJ/sprite.png",
+    "res/OBJ/Skittles.png",
+    "res/OBJ/RedBull.png",
+    "res/OBJ/powerade.png",
+    "res/OBJ/pringles.png",
+    "res/OBJ/Papes.png",
+    "res/OBJ/M&M's.png",
+    "res/OBJ",
+    "Untitled.canvas",
+    "Obsidian/Untitled.md",
+    "Obsidian/Snackautomat Java/Snackautomat.md",
+    "Obsidian/Snackautomat Java/Bilder.md",
+    "2025-02-21.md",
+    "out/production/Snack_Automat_Die_Nic_Gin/Untitled.canvas",
+    "out/production/Snack_Automat_Die_Nic_Gin/Obsidian/Snackautomat Java/Bilder.md",
+    "out/production/Snack_Automat_Die_Nic_Gin/Obsidian/Snackautomat Java/Snackautomat.md",
+    "out/production/Snack_Automat_Die_Nic_Gin/2025-02-21.md",
+    "out/production/Snack_Automat_Die_Nic_Gin/README.md"
+  ]
 }

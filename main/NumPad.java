@@ -13,6 +13,7 @@ public class NumPad extends JFrame {
         setSize(300, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
+        setResizable(false);
 
         // Display-Feld
         displayField = new JTextField();
