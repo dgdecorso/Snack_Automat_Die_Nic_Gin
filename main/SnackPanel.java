@@ -36,6 +36,7 @@ public class SnackPanel extends JPanel implements Runnable {
     private final int padY = 2 * tileSize;
     private final int padWidth;
     private final int padHeight;
+    boolean numPadOpen;
 
     public SnackPanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -55,10 +56,15 @@ public class SnackPanel extends JPanel implements Runnable {
                 int mouseX = e.getX();
                 int mouseY = e.getY();
 
-                // Check if click is on NumPad image
-                if (isNumPadClicked(mouseX, mouseY)) {
-                    openNumPad();
-                }
+
+
+                    // Check if click is on NumPad image
+                    if (isNumPadClicked(mouseX, mouseY)) {
+                        toggleNumPad();
+                        numPadOpen = true;
+                    }
+
+
             }
         });
     }
@@ -124,27 +130,46 @@ public class SnackPanel extends JPanel implements Runnable {
 
     @Override
     public void paintComponent(Graphics g) {
+        int index = 0;
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         drawBackground(g2);
         drawPad(g2);
-        obj.draw(g2);
-    }
+        for (int y = 0; y < 4; y++) {
+            for (int x = 0; x < 4; x++) {
+                obj.draw(g2, x, y, index);
+                index++;
+            }
+        }
 
-    /**
-     * Check if the mouse click happened inside the NumPad image area.
-     */
-    private boolean isNumPadClicked(int x, int y) {
+        /**
+         * Check if the mouse click happened inside the NumPad image area.
+         */
+
+    }
+    private boolean isNumPadClicked( int x, int y){
         return (x >= padX && x <= padX + padWidth) && (y >= padY && y <= padY + padHeight);
     }
 
     /**
      * Open the NumPad window when the image is clicked.
      */
-    private void openNumPad() {
+    private NumPad numPad; // Referenz zum NumPad-Fenster
+
+    private void toggleNumPad() {
         SwingUtilities.invokeLater(() -> {
-            NumPad numPad = new NumPad();
-            numPad.setVisible(true);
+            if (numPad == null || !numPad.isVisible()) {
+                // NumPad öffnen
+                numPad = new NumPad();
+                numPad.setVisible(true);
+                numPadOpen = true;
+            } else {
+                // NumPad schließen
+                numPad.dispose();
+                numPad = null;
+                numPadOpen = false;
+            }
         });
     }
+
 }
