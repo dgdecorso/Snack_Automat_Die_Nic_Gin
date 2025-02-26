@@ -1,7 +1,6 @@
 package main;
 
 import javax.swing.*;
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,7 +11,7 @@ public class NumPad extends JFrame {
     public NumPad() {
         setTitle("NumPad");
         setSize(300, 400);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setLayout(new BorderLayout());
 
         // Display-Feld
@@ -30,7 +29,7 @@ public class NumPad extends JFrame {
             addButton(buttonPanel, String.valueOf(i));
         }
 
-        // Sondertasten (0, Clear)
+        // Sondertasten (0, Clear, OK)
         addButton(buttonPanel, "0");
         addButton(buttonPanel, "C");
         addButton(buttonPanel, "OK");
@@ -61,6 +60,10 @@ public class NumPad extends JFrame {
                 NumPanel.getStoredNumber(enteredNumber);
                 displayField.setText("Confirmed");
 
+                // Warte 1 Sekunde und schließe das Fenster
+                Timer timer = new Timer(1000, event -> dispose());
+                timer.setRepeats(false); // Timer nur einmal ausführen
+                timer.start();
             }
         }
     }
