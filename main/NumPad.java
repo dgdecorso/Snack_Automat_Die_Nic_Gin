@@ -8,8 +8,11 @@ import java.awt.event.ActionListener;
 public class NumPad extends JFrame {
     private JTextField displayField;
     private String enteredNumber = ""; // Speicherung der Eingabe
+    private CashPanel cashPanel; // CashPanel-Referenz für Preisprüfung
 
-    public NumPad() {
+    public NumPad(SnackPanel sp) { // Konstruktor nimmt SnackPanel als Parameter
+        this.cashPanel = new CashPanel(sp); // CashPanel mit SnackPanel verknüpfen
+
         setTitle("NumPad");
         setSize(300, 400);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -68,21 +71,24 @@ public class NumPad extends JFrame {
 
     private void processNumber() {
         if (enteredNumber.length() == 2) { // Nur wenn genau 2 Ziffern eingegeben wurden
-            int y = Character.getNumericValue(enteredNumber.charAt(0));
-            int x = Character.getNumericValue(enteredNumber.charAt(1));
+            int x = Character.getNumericValue(enteredNumber.charAt(0));
+            x -= 1;
+            int y = Character.getNumericValue(enteredNumber.charAt(1));
+            y -= 1;
 
             // Überprüfung, ob x und y zwischen 0 und 4 liegen
             if (x >= 0 && x <= 4 && y >= 0 && y <= 4) {
-                System.out.println("Eingabe gespeichert: X=" + x + ", Y=" + y);
+                double price = cashPanel.cashChecker(x, y); // Preis abrufen
 
-                // Hier kannst du die Werte an dein Programm übergeben
-                // Zum Beispiel:
-                // DeineKlasse.setPosition(x, y);
+                if (price >= 0) {
+                    displayField.setText("Preis: " + price + "€");
+                } else {
+                    displayField.setText("Kein Produkt!");
+                }
 
-                displayField.setText("Gespeichert: " + enteredNumber);
-                // Warte 1 Sekunde und schließe das Fenster
-                Timer timer = new Timer(1000, event -> setVisible(false));
-                timer.setRepeats(false); // Timer nur einmal ausführen
+                // Warte 1,5 Sekunden und schließe das Fenster
+                Timer timer = new Timer(1500, event -> setVisible(false));
+                timer.setRepeats(false);
                 timer.start();
             } else {
                 displayField.setText("Ungültig!");
@@ -91,7 +97,5 @@ public class NumPad extends JFrame {
         } else {
             displayField.setText("Fehlende Ziffer!");
         }
-
-
     }
 }
