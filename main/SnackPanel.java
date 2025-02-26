@@ -75,6 +75,11 @@ public class SnackPanel extends JPanel implements Runnable{
         }
     }
 
+    public void numPad() {
+
+
+    }
+
     private void update() {
 
     }
