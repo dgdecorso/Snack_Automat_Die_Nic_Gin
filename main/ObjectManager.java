@@ -3,7 +3,6 @@ package main;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.awt.image.VolatileImage;
 import java.io.IOException;
 
 public class ObjectManager {
@@ -24,7 +23,7 @@ public class ObjectManager {
     }
 
     public int getLocationY(int y) {
-        return (16 * sp.scale) + ((y) * sp.tileSize) + (8 * sp.scale);
+        return (29 * sp.scale) + ((y) * (sp.tileSize + (11 * sp.scale)));
     }
 
     public void load() {
@@ -42,18 +41,16 @@ public class ObjectManager {
             BufferedImage img = ImageIO.read(java.util.Objects.requireNonNull(getClass().getResourceAsStream("/res/OBJ/" + imageName + ".png")));
             BufferedImage scaledImg = uTool.scaleImage(img, sp.tileSize, sp.tileSize);
 
-            GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment()
-                    .getDefaultScreenDevice()
-                    .getDefaultConfiguration();
-            VolatileImage vImg = gc.createCompatibleVolatileImage(sp.tileSize, sp.tileSize, Transparency.TRANSLUCENT);
-
-            Graphics2D g2d = vImg.createGraphics();
+            // Erstelle ein neues transparentes BufferedImage
+            BufferedImage transparentImg = new BufferedImage(sp.tileSize, sp.tileSize, BufferedImage.TYPE_INT_ARGB);
+            Graphics2D g2d = transparentImg.createGraphics();
+            g2d.setComposite(AlphaComposite.SrcOver); // Setzt die Transparenz-Korrektur
             g2d.drawImage(scaledImg, 0, 0, null);
             g2d.dispose();
 
-            // Bild speichern in 1D-Array
-            objImage[index] = vImg.getSnapshot();
-            object[index] = new Objects(vImg.getSnapshot());
+            // Speichere das Bild in das 1D-Array
+            objImage[index] = transparentImg;
+            object[index] = new Objects(transparentImg);
 
             System.out.println("Geladen: " + imageName + " an Index: " + index);
         } catch (IOException e) {
@@ -69,7 +66,7 @@ public class ObjectManager {
     public void draw(Graphics2D g2, int x, int y, int index) {
         // Sicherheit prüfen, um Abstürze zu vermeiden
         if (index >= 0 && index < objImage.length && objImage[index] != null) {
-            int screenX = getLocationX(x); // Korrektur für Positionierung
+            int screenX = getLocationX(x);
             int screenY = getLocationY(y);
             g2.drawImage(objImage[index], screenX, screenY, null);
         } else {
