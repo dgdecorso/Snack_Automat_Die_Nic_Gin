@@ -182,7 +182,7 @@ public class SnackPanel extends JPanel implements Runnable {
     private void toggleNumPad() {
         SwingUtilities.invokeLater(() -> {
             if (numPad == null) {
-                numPad = new NumPad(this); // `this` als `SnackPanel`-Referenz übergeben
+                numPad = new NumPad(); // `this` als `SnackPanel`-Referenz übergeben
             }
 
             if (numPad.isVisible()) {
