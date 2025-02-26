@@ -1,4 +1,4 @@
-//Könnt Ihr hier bitte noch die Arrays und Strings anpassen auf den Teil,
+package main;//Könnt Ihr hier bitte noch die Arrays und Strings anpassen auf den Teil,
 //welchen man sebst gecoded hat.
 
 
@@ -9,14 +9,14 @@ import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SnackAutomat extends JFrame {
+public class SwingAnimations extends JFrame {
     private JPanel buttonPanel, displayPanel;
     private Map<Integer, Point> snackPositions; // Speichert Positionen der Snacks
     private JLabel fallingSnack;
     private Timer timer;
     private boolean isFalling = false; // Verhindert gleichzeitige Snacks die fallen
 
-    public SnackAutomat() {
+    public SwingAnimations() {
         setTitle("Snackautomat");
         setSize(500, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

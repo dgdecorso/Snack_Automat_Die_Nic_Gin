@@ -1,1 +1,1 @@
-# SnackAutomat
+# main.SnackAutomat
