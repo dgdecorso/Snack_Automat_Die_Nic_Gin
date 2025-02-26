@@ -13,6 +13,7 @@ public class SnackPanel extends JPanel implements Runnable {
     // BACKGROUND
     private BufferedImage backgroundImage;
     private BufferedImage NumPadImage;
+    private BufferedImage spring;
 
     // SCREEN
     public int originalTileSize = 32;
@@ -31,7 +32,8 @@ public class SnackPanel extends JPanel implements Runnable {
     // SYSTEM
     Thread machineThread;
 
-    // NumPad Position
+    // NumPad
+    private NumPad numPad; // Korrekt als Instanzvariable gespeichert
     private final int padX = 440;
     private final int padY = 2 * tileSize;
     private final int padWidth;
@@ -57,8 +59,7 @@ public class SnackPanel extends JPanel implements Runnable {
 
                 // Check if click is on NumPad image
                 if (isNumPadClicked(mouseX, mouseY)) {
-
-                    openNumPad();
+                    toggleNumPad(); // Richtig aufrufen
                 }
             }
         });
@@ -83,6 +84,13 @@ public class SnackPanel extends JPanel implements Runnable {
         }
     }
 
+    public void loadSpring() {
+        try {
+            spring = ImageIO.read(Objects.requireNonNull(getClass().getResource("/res/OBJ/New Piskel (1).png")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public void loadNumPad() {
         try {
             NumPadImage = ImageIO.read(Objects.requireNonNull(getClass().getResource("/res/NumClick.png")));
@@ -93,6 +101,10 @@ public class SnackPanel extends JPanel implements Runnable {
 
     public void drawBackground(Graphics2D g2) {
         g2.drawImage(backgroundImage, 0, 0, screenWidth, screenHeight, null);
+    }
+
+    public void drawSpring(Graphics2D g2,int x,int y) {
+        g2.drawImage(spring, x, y, null);
     }
 
     public void drawPad(Graphics2D g2) {
@@ -125,11 +137,24 @@ public class SnackPanel extends JPanel implements Runnable {
 
     @Override
     public void paintComponent(Graphics g) {
+        int index = 0;
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         drawBackground(g2);
         drawPad(g2);
-        obj.draw(g2);
+        //Objects
+        for (int y = 0; y < 4; y++) {
+            for (int x = 0; x < 4; x++) {
+                obj.draw(g2, x, y, index);
+                index++;
+            }
+        }
+        //Metall Federn
+        for (int y = 0; y < 4; y++) {
+            for (int x = 0; x < 4; x++) {
+
+            }
+        }
     }
 
     /**
@@ -140,12 +165,19 @@ public class SnackPanel extends JPanel implements Runnable {
     }
 
     /**
-     * Open the NumPad window when the image is clicked.
+     * Open or close the NumPad window when the image is clicked.
      */
-    private void openNumPad() {
+    private void toggleNumPad() {
         SwingUtilities.invokeLater(() -> {
-            NumPad numPad = new NumPad();
-            numPad.setVisible(true);
+            if (numPad == null) {
+                numPad = new NumPad();
+            }
+
+            if (numPad.isVisible()) {
+                numPad.setVisible(false); // Fenster verstecken
+            } else {
+                numPad.setVisible(true); // Fenster anzeigen
+            }
         });
     }
 }
