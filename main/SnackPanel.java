@@ -5,6 +5,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
@@ -36,11 +38,10 @@ public class SnackPanel extends JPanel implements Runnable {
     public SnackItem[] item;
     public ObjectManager obj; // Initialisiere NICHT direkt hier!
 
-    // Variablen für das fallende Objekt
+    // FALLING OBJECT STATES
     private boolean isFalling = false;
     private int fallingObject = -1; // Welches Objekt fällt
     private int fallY = 0; // Y-Position des fallenden Objekts
-    private long fallStartTime = 0; // Startzeit des Falls
 
     // NumPad
     private NumPad numPad;
@@ -55,7 +56,6 @@ public class SnackPanel extends JPanel implements Runnable {
         this.setDoubleBuffered(true);
         this.setFocusable(true);
         this.requestFocusInWindow();
-
 
         // Initialisiere das Item-Array VOR dem ObjectManager!
         item = new SnackItem[16];
@@ -145,51 +145,49 @@ public class SnackPanel extends JPanel implements Runnable {
             lastTime = currentTime;
 
             if (delta >= 1) {
-                update();
                 SwingUtilities.invokeLater(this::repaint);
                 delta--;
             }
         }
     }
 
-    private void update() {
-       if (isFalling) {
-           updateFall();
-       }
-    }
-
     // FALLING OBJECT ANIMATION
     public void fallingObject(int index) {
-        System.out.println("In falling object");
-
+        if (!isFalling) {
+            System.out.println("Falling object started: " + index);
             isFalling = true;
             fallingObject = index;
-            fallY = obj.getLocationY(index / 4); // Setze die Startposition
-            fallStartTime = System.currentTimeMillis(); // Starte den Timer
-            updateFall();
+            fallY = obj.getLocationY(index / 4); // Startposition berechnen
 
-    }
+            // Timer für die Animation starten (1000 / FPS = ca. 16ms pro Frame)
+            Timer fallTimer = new Timer(16, new ActionListener() {
+                long startTime = System.currentTimeMillis();
 
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    long elapsedTime = System.currentTimeMillis() - startTime;
 
-    private void updateFall() {
-        while (isFalling) {
-            long elapsedTime = System.currentTimeMillis() - fallStartTime;
+                    if (elapsedTime < 2000) { // Erste 2 Sekunden: Langsames Fallen (3px)
+                        fallY += 3;
+                    } else if (elapsedTime < 7000) { // Danach schnelles Fallen (750px in 5s)
+                        fallY += 15; // Geschwindigkeit von 15px pro Frame
+                    }
 
-            if (elapsedTime < 2000) { // Erste 2 Sekunden: Langsames Fallen (3px)
-                fallY += 3;
-            } else if (elapsedTime < 700000000) { // Danach schnelles Fallen (750px in 5s)
-                fallY += 750 / 50; // ~15 px pro Frame
-            }
-            if (fallY >= 800) { // Falls es unter 800 px ist, 0stoppe das Fallen
-                isFalling = false;
-                fallingObject = -1;
-                fallY = 0; // Zurücksetzen für das nächste Objekt
-            }
+                    if (fallY >= 800) { // Falls es unter 800 px ist, stoppe das Fallen
+                        System.out.println("Falling object stopped");
+                        ((Timer) e.getSource()).stop();
+                        isFalling = false;
+                        fallingObject = -1;
+                        fallY = 0;
+                    }
 
-            repaint(); // Neu zeichnen
+                    repaint();
+                }
+            });
+
+            fallTimer.start();
         }
     }
-
 
     @Override
     public void paintComponent(Graphics g) {
@@ -202,9 +200,9 @@ public class SnackPanel extends JPanel implements Runnable {
         for (int y = 0; y < 4; y++) {
             for (int x = 0; x < 4; x++) {
                 if (fallingObject == index) {
-                    obj.draw(g2, x, fallY / tileSize, index); // Zeichne das fallende Objekt
+                    obj.draw(g2, x, fallY / tileSize, index);
                 } else {
-                    obj.draw(g2, x, y, index); // Zeichne alle anderen
+                    obj.draw(g2, x, y, index);
                 }
                 index++;
             }
