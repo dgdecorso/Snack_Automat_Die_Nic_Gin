@@ -1,4 +1,3 @@
-
 package main;
 
 public class Admin extends AdminPanel {
@@ -25,5 +24,13 @@ public class Admin extends AdminPanel {
         } else {
             System.out.println("FEHLER: Snack mit Index " + index + " existiert nicht.");
         }
+    }
+
+    // Methode, um alle Snacks auf 10 aufzufüllen
+    public void RefillAll() {
+        for (int index : sp.objectManager.snackItems.keySet()) {
+            sp.objectManager.snackItems.get(index).stock = initialAmount;
+        }
+        System.out.println("Alle Snacks wurden wider aufgefüllt.");
     }
 }
