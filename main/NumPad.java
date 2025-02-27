@@ -8,44 +8,52 @@ import java.awt.event.ActionListener;
 public class NumPad extends JFrame {
     private JTextField displayField;
     private String enteredNumber = ""; // Speicherung der Eingabe
-    private CashPanel cashPanel; // CashPanel-Referenz für Preisprüfung
 
-    public NumPad(SnackPanel sp) { // Konstruktor nimmt SnackPanel als Parameter
-        this.cashPanel = new CashPanel(sp); // CashPanel mit SnackPanel verknüpfen
-
+    public NumPad() {
         setTitle("NumPad");
         setSize(300, 400);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
         setResizable(false);
 
+        // Pixel-Font laden (muss in den Ressourcen vorhanden sein)
+        Font pixelFont = new Font("Monospaced", Font.BOLD, 24);
+
         // Display-Feld
         displayField = new JTextField();
         displayField.setEditable(false);
-        displayField.setFont(new Font("Arial", Font.BOLD, 24));
+        displayField.setFont(pixelFont);
         displayField.setHorizontalAlignment(JTextField.CENTER);
+        displayField.setBackground(Color.DARK_GRAY);
+        displayField.setForeground(Color.WHITE);
         add(displayField, BorderLayout.NORTH);
 
         // Panel für die Tasten
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(4, 3, 5, 5));
+        buttonPanel.setBackground(Color.GRAY);
 
         // Buttons erstellen (1-9)
         for (int i = 1; i <= 9; i++) {
-            addButton(buttonPanel, String.valueOf(i));
+            addButton(buttonPanel, String.valueOf(i), pixelFont);
         }
 
-        // Sondertasten (0, Clear, OK)
-        addButton(buttonPanel, "C");
-        addButton(buttonPanel, "0");
-        addButton(buttonPanel, "OK");
+        // Sondertasten (C, 0, OK)
+        addButton(buttonPanel, "C", pixelFont);
+        addButton(buttonPanel, "0", pixelFont);
+        addButton(buttonPanel, "OK", pixelFont);
 
         add(buttonPanel, BorderLayout.CENTER);
     }
 
-    private void addButton(JPanel panel, String text) {
+    private void addButton(JPanel panel, String text, Font font) {
         JButton button = new JButton(text);
-        button.setFont(new Font("Arial", Font.BOLD, 24));
+        button.setFont(font);
+        button.setForeground(Color.WHITE);
+        button.setBackground(Color.GRAY);
+        button.setFocusPainted(false);
+        button.setBorderPainted(false);
+        button.setOpaque(true);
         button.addActionListener(new ButtonClickListener());
         panel.add(button);
     }
@@ -66,30 +74,28 @@ public class NumPad extends JFrame {
                     displayField.setText(enteredNumber);
                 }
             }
+            
         }
     }
 
     private void processNumber() {
         if (enteredNumber.length() == 2) { // Nur wenn genau 2 Ziffern eingegeben wurden
-            int x = Character.getNumericValue(enteredNumber.charAt(0));
-            x -= 1;
-            int y = Character.getNumericValue(enteredNumber.charAt(1));
-            y -= 1;
+            int y = Character.getNumericValue(enteredNumber.charAt(0));
+            int x = Character.getNumericValue(enteredNumber.charAt(1));
 
             // Überprüfung, ob x und y zwischen 0 und 4 liegen
             if (x >= 0 && x <= 4 && y >= 0 && y <= 4) {
-                double price = cashPanel.cashChecker(x, y); // Preis abrufen
+                System.out.println("Eingabe gespeichert: X=" + x + ", Y=" + y);
 
-                if (price >= 0) {
-                    displayField.setText("Preis: " + price + "€");
-                } else {
-                    displayField.setText("Kein Produkt!");
-                }
-
-                // Warte 1,5 Sekunden und schließe das Fenster
-                Timer timer = new Timer(1500, event -> setVisible(false));
-                timer.setRepeats(false);
+                displayField.setText("Gespeichert: " + enteredNumber);
+                // Warte 1 Sekunde und schließe das Fenster
+                Timer timer = new Timer(1000, event -> setVisible(false));
+                timer.setRepeats(false); // Timer nur einmal ausführen
                 timer.start();
+            } else if (x == 9 && y == 9) {
+
+                    AdminPanel ap = new AdminPanel();
+
             } else {
                 displayField.setText("Ungültig!");
                 enteredNumber = "";

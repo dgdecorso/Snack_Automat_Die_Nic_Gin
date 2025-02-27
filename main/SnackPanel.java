@@ -43,6 +43,7 @@ public class SnackPanel extends JPanel implements Runnable {
     //States
     public boolean isFalling = false;
     public int fallingObject = 999;
+    public ObjectManager objectManager;
 
     // NumPad
     private NumPad numPad; // Korrekt als Instanzvariable gespeichert
@@ -121,6 +122,9 @@ public class SnackPanel extends JPanel implements Runnable {
         }
     }
 
+
+
+
     public void drawBackground(Graphics2D g2) {
         g2.drawImage(backgroundImage, 0, 0, screenWidth, screenHeight, null);
     }
@@ -195,7 +199,7 @@ public class SnackPanel extends JPanel implements Runnable {
     private void toggleNumPad() {
         SwingUtilities.invokeLater(() -> {
             if (numPad == null) {
-                numPad = new NumPad(this); // `this` als `SnackPanel`-Referenz übergeben
+                numPad = new NumPad(); // `this` als `SnackPanel`-Referenz übergeben
             }
 
             if (numPad.isVisible()) {
