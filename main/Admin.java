@@ -1,9 +1,9 @@
 package main;
 
 public class Admin extends AdminPanel {
-    SnackPanel sp = new SnackPanel();
+    static SnackPanel sp = new SnackPanel();
 
-    int initialAmount = 10; // Anfangsbestand
+    static int initialAmount = 10; // Anfangsbestand
     int currentAmount; // Aktueller Bestand
 
     public Admin() {
@@ -27,7 +27,7 @@ public class Admin extends AdminPanel {
     }
 
     // Methode, um alle Snacks auf 10 aufzufüllen
-    public void RefillAll() {
+    public static void RefillAll() {
         for (int index : sp.objectManager.snackItems.keySet()) {
             sp.objectManager.snackItems.get(index).stock = initialAmount;
         }

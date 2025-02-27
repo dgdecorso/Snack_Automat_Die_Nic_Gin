@@ -25,7 +25,7 @@ public class ObjectManager {
 
     public void load() {
         // Snack-Items hinzufügen (Index, Name, Dateipfad, Preis)
-        addSnack(0, "Gum", "Bazooka Gum.png", 1.00, 0, 0, 0);
+        addSnack(0, "Ice Tea", "lipton.png", 2.80, 0, 0, 0);
         addSnack(1, "Blauband", "Blauband.png", 8, 1, 0, 0);
         addSnack(2, "M&M's", "M&M's.png", 1.50, 2, 0, 0);
         addSnack(3, "Papes", "Papes.png", 1.20, 3, 0, 0);
@@ -37,10 +37,10 @@ public class ObjectManager {
         addSnack(9, "Takis", "Takis.png", 2.20, 4, 1, 0);
         addSnack(10, "Tiki Drink", "tiki drink.png", 2.20, 0, 2,0);
         addSnack(11, "Zweifel", "Zweifel.png", 2.30, 1, 2, 0);
-        addSnack(12, "preg", "preg.png", 20, 3, 1, 0);
-        addSnack(13, "chimpy", "chimpy.png", 2.50, 2, 1, 0);
-        addSnack(14, "haribo", "Haribo.png", 2.80, 0, 2, 0);
-        addSnack(15, "cola", "cola.png", 2.80, 0, 2, 0);
+        addSnack(12, "Preg.Test", "preg.png", 20, 3, 1, 0);
+        addSnack(13, "Chimpy", "chimpy.png", 2.50, 2, 1, 0);
+        addSnack(14, "Haribo", "Haribo.png", 2.80, 0, 2, 0);
+        addSnack(15, "Coca-Cola", "cola.png", 2.80, 0, 2, 0);
     }
 
     private void addSnack(int index, String name, String filePath, double price, int x, int y,int stock) {
@@ -68,23 +68,40 @@ public class ObjectManager {
             int screenX = getLocationX(x);
             int screenY = getLocationY(y);
 
-            // Gegenstände um 20% vergrößert zeichnen
+            // Vergrößerte Darstellung des Snacks
             int newSize = (int) (sp.tileSize * 1);
             g2.drawImage(objImage[index], screenX, screenY, newSize, newSize, null);
 
-            // Zeigt den Namen und Preis über dem Objekt
-            if (snackItems.containsKey(index)) {
-                SnackItem item = snackItems.get(index);
-                g2.setColor(Color.WHITE);
+            // Überprüfen, ob ein Snack vorhanden ist
+            if (index < sp.item.length && sp.item[index] != null) {
+                double price = sp.item[index].price;
+
+                // Positionsnummer berechnen (z. B. 11, 12, ..., 44)
+                int position = (y + 1) * 10 + (x + 1);
+
+                // Text mit Preis und Position
+                String text = price + "€ (" + position + ")";
+
+                // Schriftart setzen
                 g2.setFont(new Font("Arial", Font.BOLD, 12));
 
-                // Namen + Preis über dem Objekt anzeigen
-                g2.drawString(item.name + " - " + item.price + "€", screenX, screenY - 5);
+                // Schwarze Kontur für bessere Sichtbarkeit
+                g2.setColor(Color.BLACK);
+                g2.drawString(text, screenX + 1, screenY - 4);
+                g2.drawString(text, screenX - 1, screenY - 4);
+                g2.drawString(text, screenX, screenY - 3);
+                g2.drawString(text, screenX, screenY - 5);
+
+                // Weißer Text
+                g2.setColor(Color.WHITE);
+                g2.drawString(text, screenX, screenY - 4);
             }
         } else {
             System.out.println("WARNUNG: Kein Bild für Index " + index);
         }
     }
+
+
 
     public int getLocationX(int x) {
         return (16 * sp.scale) + (x * sp.tileSize);

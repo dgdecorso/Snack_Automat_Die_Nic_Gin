@@ -1,7 +1,7 @@
 package main;
 
 public class NumPanel {
-    private static String storedNumber = ""; // Variable zur Speicherung der Zahl
+    public static String storedNumber = ""; // Variable zur Speicherung der Zahl
 
     public static void setNumber(String number) {
         storedNumber = number;
@@ -9,6 +9,6 @@ public class NumPanel {
     }
 
     public static String getStoredNumber(String enteredNumber) {
-        return storedNumber;
+        return storedNumber.isEmpty() ? enteredNumber : storedNumber;
     }
 }

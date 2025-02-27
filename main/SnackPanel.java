@@ -6,19 +6,20 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 
 public class SnackPanel extends JPanel implements Runnable {
-   //CASHPANEL
-
-    public double cash = 23.43;
-
+    // CASHPANEL
+    public String cash = NumPanel.storedNumber; // Standardwert
 
     // BACKGROUND
     private BufferedImage backgroundImage;
     private BufferedImage NumPadImage;
     private BufferedImage spring;
+    private BufferedImage front;
+    private Font pixelFont;
 
     // SCREEN
     public int originalTileSize = 32;
@@ -29,7 +30,6 @@ public class SnackPanel extends JPanel implements Runnable {
     public int screenWidth = tileSize * screenCols;
     public int screenHeight = tileSize * screenRows;
 
-
     // FPS
     int FPS = 60;
     volatile boolean running = true;
@@ -38,59 +38,70 @@ public class SnackPanel extends JPanel implements Runnable {
     Thread machineThread;
 
     public SnackItem[] item;
-    public ObjectManager obj; // Initialisiere NICHT direkt hier!
+    public ObjectManager obj;
 
-    //States
+    // States
     public boolean isFalling = false;
     public int fallingObject = 999;
     public ObjectManager objectManager;
 
     // NumPad
-    private NumPad numPad; // Korrekt als Instanzvariable gespeichert
+    private NumPad numPad;
     private final int padX = 440;
     private final int padY = 2 * tileSize;
     private final int padWidth;
     private final int padHeight;
 
     public SnackPanel() {
-
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(new Color(137, 137, 137, 255));
         this.setDoubleBuffered(true);
         this.setFocusable(true);
         this.requestFocusInWindow();
 
-
-        // Initialisiere das Item-Array VOR dem ObjectManager!
+        // Initialisiere das Item-Array
         item = new SnackItem[16];
         for (int i = 0; i < item.length; i++) {
             item[i] = new SnackItem();
         }
 
-        // Jetzt ObjectManager initialisieren
+        // Initialisiere ObjectManager
         obj = new ObjectManager(this);
 
-        // Calculate NumPad Image size
+        // NumPad Image size
         padWidth = screenWidth / 4;
         padHeight = screenHeight / 5;
 
-        // Add MouseListener for clicks
+        // Lade die Pixel-Font
+        loadPixelFont();
+
+        // MouseListener für NumPad-Klicks
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 int mouseX = e.getX();
                 int mouseY = e.getY();
 
-                // Check if click is on NumPad image
                 if (isNumPadClicked(mouseX, mouseY)) {
-                    toggleNumPad(); // Richtig aufrufen
+                    toggleNumPad();
                 }
             }
         });
     }
 
+    private void loadPixelFont() {
+        try {
+            pixelFont = Font.createFont(Font.TRUETYPE_FONT, new File("res/Arvo,Courier_Prime,Pixelify_Sans/Pixelify_Sans/PixelifySans-VariableFont_wght.ttf"));
+            pixelFont = pixelFont.deriveFont(20f); // Schriftgröße anpassen
+        } catch (IOException | FontFormatException e) {
+            e.printStackTrace();
+            pixelFont = new Font("Monospaced", Font.BOLD, 20); // Fallback
+        }
+    }
+
     public void setupMachine() {
         loadBackground();
+        loadFront();
         loadNumPad();
         obj.load();
     }
@@ -108,6 +119,14 @@ public class SnackPanel extends JPanel implements Runnable {
         }
     }
 
+    public void loadFront() {
+        try {
+            backgroundImage = ImageIO.read(Objects.requireNonNull(getClass().getResource("/res/finished2.png")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void loadSpring() {
         try {
             spring = ImageIO.read(Objects.requireNonNull(getClass().getResource("/res/OBJ/New Piskel (1).png")));
@@ -115,6 +134,7 @@ public class SnackPanel extends JPanel implements Runnable {
             e.printStackTrace();
         }
     }
+
     public void loadNumPad() {
         try {
             NumPadImage = ImageIO.read(Objects.requireNonNull(getClass().getResource("/res/NumClick.png")));
@@ -123,19 +143,24 @@ public class SnackPanel extends JPanel implements Runnable {
         }
     }
 
-
-
-
     public void drawBackground(Graphics2D g2) {
         g2.drawImage(backgroundImage, 0, 0, screenWidth, screenHeight, null);
     }
 
-    public void drawSpring(Graphics2D g2,int x,int y) {
+    public void drawSpring(Graphics2D g2, int x, int y) {
         g2.drawImage(spring, x, y, null);
     }
 
     public void drawPad(Graphics2D g2) {
         g2.drawImage(NumPadImage, padX, padY, padWidth, padHeight, null);
+    }
+
+    public void drawFront(Graphics2D g2) {
+        g2.drawImage(front, 0, 0, screenWidth, screenHeight, null);
+    }
+
+    public void drawFront(Graphics2D g2, int x, int y) {
+        g2.drawImage(front, 0, 0, screenWidth, screenHeight, null);
     }
 
     @Override
@@ -159,9 +184,9 @@ public class SnackPanel extends JPanel implements Runnable {
     }
 
     private void update() {
-        // Game logic updates (if needed)
+        cash = NumPanel.getStoredNumber(cash); // Aktualisiert cash mit der neuesten gespeicherten Zahl
         if (isFalling) {
-          //  obj.fallAnimation();
+            // obj.fallAnimation();
         }
     }
 
@@ -170,45 +195,51 @@ public class SnackPanel extends JPanel implements Runnable {
         int index = 0;
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
+
         drawBackground(g2);
         drawPad(g2);
-        //Objects
+        drawPrice(g2); // Preis oben rechts anzeigen
+
         for (int y = 0; y < 4; y++) {
             for (int x = 0; x < 4; x++) {
                 obj.draw(g2, x, y, index);
                 index++;
             }
         }
-        //Metall Federn
-        for (int y = 0; y < 4; y++) {
-            for (int x = 0; x < 4; x++) {
-
-            }
-        }
     }
 
     /**
-     * Check if the mouse click happened inside the NumPad image area.
+     * Zeigt den aktuellen Preis oben rechts im Fenster an.
      */
+    private void drawPrice(Graphics2D g2) {
+        g2.setColor(Color.WHITE);
+        g2.setFont(pixelFont);
+
+        double cashValue;
+        try {
+            cashValue = Double.parseDouble(cash);
+        } catch (NumberFormatException e) {
+            cashValue = 0.00; // Falls `cash` keine Zahl ist, setze es auf 0.00
+        }
+
+        String priceText = "€" + String.format("%.2f", cashValue);
+
+        int textX = screenWidth - 95;
+        int textY = 150;
+        g2.drawString(priceText, textX, textY);
+    }
+
     private boolean isNumPadClicked(int x, int y) {
         return (x >= padX && x <= padX + padWidth) && (y >= padY && y <= padY + padHeight);
     }
 
-    /**
-     * Open or close the NumPad window when the image is clicked.
-     */
     private void toggleNumPad() {
         SwingUtilities.invokeLater(() -> {
             if (numPad == null) {
-                numPad = new NumPad(); // `this` als `SnackPanel`-Referenz übergeben
+                numPad = new NumPad();
             }
 
-            if (numPad.isVisible()) {
-                numPad.setVisible(false); // Fenster verstecken
-            } else {
-                numPad.setVisible(true); // Fenster anzeigen
-            }
+            numPad.setVisible(!numPad.isVisible());
         });
     }
-
 }

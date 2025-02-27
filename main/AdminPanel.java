@@ -1,3 +1,4 @@
+
 package main;
 
 import javax.swing.*;
@@ -43,9 +44,19 @@ public class AdminPanel extends JFrame {
     private void addButton(JPanel panel, String text, Font font, JTextField displayField) {
         JButton button = new JButton(text);
         button.setFont(font);
-        button.addActionListener(e -> displayField.setText(displayField.getText() + text));
+
+        if (text.equals("1")) {
+            button.addActionListener(e -> {
+                Admin.RefillAll();
+                displayField.setText("Snacks aufgefüllt!");
+            });
+        } else {
+            button.addActionListener(e -> displayField.setText(displayField.getText() + text));
+        }
+
         panel.add(button);
     }
 
 
-    }
+
+}
