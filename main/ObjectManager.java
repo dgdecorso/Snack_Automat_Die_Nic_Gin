@@ -25,7 +25,7 @@ public class ObjectManager {
 
     public void load() {
         // Snack-Items hinzufügen (Index, Name, Dateipfad, Preis)
-        addSnack(0, "Bazooka Gum", "Bazooka Gum.png", 1.00, 0, 0, 0);
+        addSnack(0, "Gum", "Bazooka Gum.png", 1.00, 0, 0, 0);
         addSnack(1, "Blauband", "Blauband.png", 8, 1, 0, 0);
         addSnack(2, "M&M's", "M&M's.png", 1.50, 2, 0, 0);
         addSnack(3, "Papes", "Papes.png", 1.20, 3, 0, 0);
@@ -49,8 +49,11 @@ public class ObjectManager {
             objImage[index] = img;
             object[index] = new Objects(img);
 
+            sp.item[index].name = name;
+            sp.item[index].price = price;
+
             // Speichere das SnackItem und den Namen
-            snackItems.put(index, new SnackItem(index, name, filePath, price, stock));
+
             objectNames[x][y] = name; // Name an die Position speichern
 
             System.out.println("Geladen: " + name + " an Position [" + x + "][" + y + "]");
