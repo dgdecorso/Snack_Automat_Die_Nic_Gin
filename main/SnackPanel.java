@@ -50,6 +50,7 @@ public class SnackPanel extends JPanel implements Runnable {
     private final int padHeight;
 
     public SnackPanel() {
+
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(new Color(137, 137, 137, 255));
         this.setDoubleBuffered(true);
