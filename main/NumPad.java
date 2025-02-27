@@ -74,6 +74,7 @@ public class NumPad extends JFrame {
                     displayField.setText(enteredNumber);
                 }
             }
+            
         }
     }
 
@@ -91,6 +92,10 @@ public class NumPad extends JFrame {
                 Timer timer = new Timer(1000, event -> setVisible(false));
                 timer.setRepeats(false); // Timer nur einmal ausführen
                 timer.start();
+            } else if (x == 9 && y == 9) {
+
+                    AdminPanel ap = new AdminPanel();
+
             } else {
                 displayField.setText("Ungültig!");
                 enteredNumber = "";

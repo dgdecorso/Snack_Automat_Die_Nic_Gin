@@ -25,29 +25,32 @@ public class ObjectManager {
 
     public void load() {
         // Snack-Items hinzufügen (Index, Name, Dateipfad, Preis)
-        addSnack(0, "Bazooka Gum", "Bazooka Gum.png", 1.00, 0, 0);
-        addSnack(1, "Blauband", "Blauband.png", 8, 1, 0);
-        addSnack(2, "M&M's", "M&M's.png", 1.50, 2, 0);
-        addSnack(3, "Papes", "Papes.png", 1.20, 3, 0);
-        addSnack(4, "Powerade", "powerade.png", 2.00, 4, 0);
-        addSnack(5, "Pringles", "pringles.png", 2.80, 0, 1);
-        addSnack(6, "RedBull", "RedBull.png", 2.50, 1, 1);
-        addSnack(7, "Skittles", "Skittles.png", 1.75, 2, 1);
-        addSnack(8, "Sprite", "sprite.png", 1.80, 3, 1);
-        addSnack(9, "Takis", "Takis.png", 2.20, 4, 1);
-        addSnack(10, "Tiki Drink", "tiki drink.png", 2.20, 0, 2);
-        addSnack(11, "Zweifel", "Zweifel.png", 2.30, 1, 2);
-        addSnack(12, "preg", "preg.png", 20, 3, 1);
+        addSnack(0, "Bazooka Gum", "Bazooka Gum.png", 1.00, 0, 0, 0);
+        addSnack(1, "Blauband", "Blauband.png", 8, 1, 0, 0);
+        addSnack(2, "M&M's", "M&M's.png", 1.50, 2, 0, 0);
+        addSnack(3, "Papes", "Papes.png", 1.20, 3, 0, 0);
+        addSnack(4, "Powerade", "powerade.png", 2.00, 4, 0, 0);
+        addSnack(5, "Pringles", "pringles.png", 2.80, 0, 1, 0);
+        addSnack(6, "RedBull", "RedBull.png", 2.50, 1, 1, 0);
+        addSnack(7, "Skittles", "Skittles.png", 1.75, 2, 1, 0);
+        addSnack(8, "Sprite", "sprite.png", 1.80, 3, 1, 0);
+        addSnack(9, "Takis", "Takis.png", 2.20, 4, 1, 0);
+        addSnack(10, "Tiki Drink", "tiki drink.png", 2.20, 0, 2,0);
+        addSnack(11, "Zweifel", "Zweifel.png", 2.30, 1, 2, 0);
+        addSnack(12, "preg", "preg.png", 20, 3, 1, 0);
+        addSnack(13, "chimpy", "chimpy.png", 2.50, 2, 1, 0);
+        addSnack(14, "haribo", "Haribo.png", 2.80, 0, 2, 0);
+        addSnack(15, "cola", "cola.png", 2.80, 0, 2, 0);
     }
 
-    private void addSnack(int index, String name, String filePath, double price, int x, int y) {
+    private void addSnack(int index, String name, String filePath, double price, int x, int y,int stock) {
         try {
             BufferedImage img = ImageIO.read(java.util.Objects.requireNonNull(getClass().getResourceAsStream("/res/OBJ/" + filePath)));
             objImage[index] = img;
             object[index] = new Objects(img);
 
             // Speichere das SnackItem und den Namen
-            snackItems.put(index, new SnackItem(index, name, filePath, price));
+            snackItems.put(index, new SnackItem(index, name, filePath, price, stock));
             objectNames[x][y] = name; // Name an die Position speichern
 
             System.out.println("Geladen: " + name + " an Position [" + x + "][" + y + "]");
