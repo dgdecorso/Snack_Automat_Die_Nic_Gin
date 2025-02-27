@@ -8,6 +8,9 @@ import java.awt.event.ActionListener;
 public class NumPad extends JFrame {
     private JTextField displayField;
     private String enteredNumber = ""; // Speicherung der Eingabe
+    SnackPanel sp = new SnackPanel();
+    private double price;
+
 
     public NumPad() {
         setTitle("NumPad");
@@ -78,15 +81,21 @@ public class NumPad extends JFrame {
     }
 
     private void processNumber() {
-        if (enteredNumber.length() == 2) { // Nur wenn genau 2 Ziffern eingegeben wurden
-            int y = Character.getNumericValue(enteredNumber.charAt(0));
-            int x = Character.getNumericValue(enteredNumber.charAt(1));
+        if (enteredNumber.length() > 0) { // Nur wenn genau 2 Ziffern eingegeben wurden
+            int index = Integer.parseInt(enteredNumber.replaceAll("\\D", ""));
+
 
             // Überprüfung, ob x und y zwischen 0 und 4 liegen
-            if (x >= 0 && x <= 4 && y >= 0 && y <= 4) {
-                System.out.println("Eingabe gespeichert: X=" + x + ", Y=" + y);
+            if (index <= 16) {
+                index --;
+                String name = sp.item[index].name;
+                 price = sp.item[index].price;
+                 sp.priceItem = price;
+                 sp.buying = true;
 
-                displayField.setText("Gespeichert: " + enteredNumber);
+
+                displayField.setText("Preis:" + price + "");
+
 
                 // ChangeGUI-Fenster öffnen
                 SwingUtilities.invokeLater(() -> {
@@ -98,7 +107,7 @@ public class NumPad extends JFrame {
                 Timer timer = new Timer(1000, event -> enteredNumber = "");
                 timer.setRepeats(false); // Timer nur einmal ausführen
                 timer.start();
-            } else if (x == 9 && y == 9) {
+            } else if (index == 9999) {
                 AdminPanel ap = new AdminPanel();
             } else {
                 displayField.setText("Ungültig!");
@@ -122,7 +131,7 @@ public class NumPad extends JFrame {
 
             getContentPane().setBackground(Color.GRAY);
 
-            JLabel preisLabel = new JLabel("Der Preis beträgt: ");
+            JLabel preisLabel = new JLabel("Der Preis beträgt: " + price);
             preisLabel.setBounds(50, 20, 200, 20);
             preisLabel.setForeground(Color.DARK_GRAY);
             add(preisLabel);
@@ -154,20 +163,29 @@ public class NumPad extends JFrame {
                 public void actionPerformed(ActionEvent e) {
                     try {
                         double eingeworfen = Double.parseDouble(eingeworfenField.getText());
-                        double preis = 2.5;
+                        double preis = Prices.priceCalculator();
+
+                        if (preis == -1.0) {
+                            rueckGeldLabel.setText("Ungültige Nummer!");
+                            return;
+                        }
+
                         double rueckGeld = eingeworfen - preis;
 
                         if (rueckGeld < 0) {
                             rueckGeldLabel.setText("Zu wenig Geld eingeworfen!");
                         } else if (rueckGeld == 0) {
                             rueckGeldLabel.setText("Kein Rückgeld nötig. Danke!");
+                            sp.buying = false;
                         } else {
                             rueckGeldLabel.setText("Rückgeld: " + rueckGeld + " Fr.");
+                            sp.buying = false;
                         }
                     } catch (NumberFormatException ex) {
                         rueckGeldLabel.setText("Ungültige Eingabe!");
                     }
                 }
+
             });
         }
     }

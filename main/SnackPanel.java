@@ -13,7 +13,8 @@ import java.util.Objects;
 public class SnackPanel extends JPanel implements Runnable {
     // CASHPANEL
     public String cash = NumPanel.storedNumber; // Standardwert
-
+    public double priceItem;
+    public boolean buying = false;
     // BACKGROUND
     private BufferedImage backgroundImage;
     private BufferedImage NumPadImage;
@@ -202,7 +203,9 @@ public class SnackPanel extends JPanel implements Runnable {
         }
         drawBackground(g2);
         drawPad(g2);
+        if (buying) {
         drawPrice(g2); // Preis oben rechts anzeigen
+        }
 
 
     }
@@ -210,18 +213,13 @@ public class SnackPanel extends JPanel implements Runnable {
     /**
      * Zeigt den aktuellen Preis oben rechts im Fenster an.
      */
-    private void drawPrice(Graphics2D g2) {
+    public void drawPrice(Graphics2D g2) {
         g2.setColor(Color.WHITE);
         g2.setFont(pixelFont);
 
-        double cashValue;
-        try {
-            cashValue = Double.parseDouble(cash); // Falls eine Zahl eingegeben wurde
-        } catch (NumberFormatException e) {
-            cashValue = 0.00; // Falls `cash` leer oder ungültig ist
-        }
 
-        String priceText = "€" + String.format("%.2f", cashValue); // Formatiert auf 2 Nachkommastellen
+
+        String priceText = "€" + String.format("%.2f", priceItem); // Formatiert auf 2 Nachkommastellen
         int textX = screenWidth - 95;
         int textY = 150;
         g2.drawString(priceText, textX, textY);
