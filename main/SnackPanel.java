@@ -28,7 +28,7 @@ public class SnackPanel extends JPanel implements Runnable {
     public int screenCols = 6;
     public int screenWidth = tileSize * screenCols;
     public int screenHeight = tileSize * screenRows;
-    public ObjectManager obj = new ObjectManager(this);
+
 
     // FPS
     int FPS = 60;
@@ -36,6 +36,9 @@ public class SnackPanel extends JPanel implements Runnable {
 
     // SYSTEM
     Thread machineThread;
+
+    public SnackItem[] item;
+    public ObjectManager obj; // Initialisiere NICHT direkt hier!
 
     //States
     public boolean isFalling = false;
@@ -56,6 +59,16 @@ public class SnackPanel extends JPanel implements Runnable {
         this.setDoubleBuffered(true);
         this.setFocusable(true);
         this.requestFocusInWindow();
+
+
+        // Initialisiere das Item-Array VOR dem ObjectManager!
+        item = new SnackItem[16];
+        for (int i = 0; i < item.length; i++) {
+            item[i] = new SnackItem();
+        }
+
+        // Jetzt ObjectManager initialisieren
+        obj = new ObjectManager(this);
 
         // Calculate NumPad Image size
         padWidth = screenWidth / 4;
