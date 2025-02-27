@@ -7,4 +7,5 @@ public class SnackItem {
     public int index;
     public String filePath;
     public double price;
+    public int stock;
 }
