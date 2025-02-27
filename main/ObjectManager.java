@@ -45,8 +45,11 @@ public class ObjectManager {
             objImage[index] = img;
             object[index] = new Objects(img);
 
+            sp.item[index].name = name;
+            sp.item[index].price = price;
+
             // Speichere das SnackItem und den Namen
-            snackItems.put(index, new SnackItem(index, name, filePath, price));
+
             objectNames[x][y] = name; // Name an die Position speichern
 
             System.out.println("Geladen: " + name + " an Position [" + x + "][" + y + "]");
