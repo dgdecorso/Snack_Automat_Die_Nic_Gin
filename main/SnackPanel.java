@@ -10,10 +10,8 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class SnackPanel extends JPanel implements Runnable {
-   //CASHPANEL
-
+    // CASHPANEL
     public double cash = 23.43;
-
 
     // BACKGROUND
     private BufferedImage backgroundImage;
@@ -29,24 +27,23 @@ public class SnackPanel extends JPanel implements Runnable {
     public int screenWidth = tileSize * screenCols;
     public int screenHeight = tileSize * screenRows;
 
-
     // FPS
     int FPS = 60;
     volatile boolean running = true;
 
     // SYSTEM
     Thread machineThread;
-
     public SnackItem[] item;
     public ObjectManager obj; // Initialisiere NICHT direkt hier!
 
-    //States
-    public boolean isFalling = false;
-    public int fallingObject = 999;
-    public ObjectManager objectManager;
+    // Variablen für das fallende Objekt
+    private boolean isFalling = false;
+    private int fallingObject = -1; // Welches Objekt fällt
+    private int fallY = 0; // Y-Position des fallenden Objekts
+    private long fallStartTime = 0; // Startzeit des Falls
 
     // NumPad
-    private NumPad numPad; // Korrekt als Instanzvariable gespeichert
+    private NumPad numPad;
     private final int padX = 440;
     private final int padY = 2 * tileSize;
     private final int padWidth;
@@ -80,15 +77,19 @@ public class SnackPanel extends JPanel implements Runnable {
                 int mouseX = e.getX();
                 int mouseY = e.getY();
 
-                // Check if click is on NumPad image
                 if (isNumPadClicked(mouseX, mouseY)) {
-                    toggleNumPad(); // Richtig aufrufen
+                    toggleNumPad();
                 }
             }
         });
     }
 
     public void setupMachine() {
+        item = new SnackItem[16];
+        for (int i = 0; i < item.length; i++) {
+            item[i] = new SnackItem();
+        }
+
         loadBackground();
         loadNumPad();
         obj.load();
@@ -114,6 +115,7 @@ public class SnackPanel extends JPanel implements Runnable {
             e.printStackTrace();
         }
     }
+
     public void loadNumPad() {
         try {
             NumPadImage = ImageIO.read(Objects.requireNonNull(getClass().getResource("/res/NumClick.png")));
@@ -122,15 +124,8 @@ public class SnackPanel extends JPanel implements Runnable {
         }
     }
 
-
-
-
     public void drawBackground(Graphics2D g2) {
         g2.drawImage(backgroundImage, 0, 0, screenWidth, screenHeight, null);
-    }
-
-    public void drawSpring(Graphics2D g2,int x,int y) {
-        g2.drawImage(spring, x, y, null);
     }
 
     public void drawPad(Graphics2D g2) {
@@ -158,56 +153,74 @@ public class SnackPanel extends JPanel implements Runnable {
     }
 
     private void update() {
-        // Game logic updates (if needed)
-        if (isFalling) {
-          //  obj.fallAnimation();
+       if (isFalling) {
+           updateFall();
+       }
+    }
+
+    // FALLING OBJECT ANIMATION
+    public void fallingObject(int index) {
+        System.out.println("In falling object");
+
+            isFalling = true;
+            fallingObject = index;
+            fallY = obj.getLocationY(index / 4); // Setze die Startposition
+            fallStartTime = System.currentTimeMillis(); // Starte den Timer
+            updateFall();
+
+    }
+
+
+    private void updateFall() {
+        while (isFalling) {
+            long elapsedTime = System.currentTimeMillis() - fallStartTime;
+
+            if (elapsedTime < 2000) { // Erste 2 Sekunden: Langsames Fallen (3px)
+                fallY += 3;
+            } else if (elapsedTime < 700000000) { // Danach schnelles Fallen (750px in 5s)
+                fallY += 750 / 50; // ~15 px pro Frame
+            }
+            if (fallY >= 800) { // Falls es unter 800 px ist, 0stoppe das Fallen
+                isFalling = false;
+                fallingObject = -1;
+                fallY = 0; // Zurücksetzen für das nächste Objekt
+            }
+
+            repaint(); // Neu zeichnen
         }
     }
 
+
     @Override
     public void paintComponent(Graphics g) {
-        int index = 0;
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         drawBackground(g2);
         drawPad(g2);
-        //Objects
-        for (int y = 0; y < 4; y++) {
-            for (int x = 0; x < 4; x++) {
-                obj.draw(g2, x, y, index);
-                index++;
-            }
-        }
-        //Metall Federn
-        for (int y = 0; y < 4; y++) {
-            for (int x = 0; x < 4; x++) {
 
+        int index = 0;
+        for (int y = 0; y < 4; y++) {
+            for (int x = 0; x < 4; x++) {
+                if (fallingObject == index) {
+                    obj.draw(g2, x, fallY / tileSize, index); // Zeichne das fallende Objekt
+                } else {
+                    obj.draw(g2, x, y, index); // Zeichne alle anderen
+                }
+                index++;
             }
         }
     }
 
-    /**
-     * Check if the mouse click happened inside the NumPad image area.
-     */
     private boolean isNumPadClicked(int x, int y) {
         return (x >= padX && x <= padX + padWidth) && (y >= padY && y <= padY + padHeight);
     }
 
-    /**
-     * Open or close the NumPad window when the image is clicked.
-     */
     private void toggleNumPad() {
         SwingUtilities.invokeLater(() -> {
             if (numPad == null) {
-                numPad = new NumPad(); // `this` als `SnackPanel`-Referenz übergeben
+                numPad = new NumPad();
             }
-
-            if (numPad.isVisible()) {
-                numPad.setVisible(false); // Fenster verstecken
-            } else {
-                numPad.setVisible(true); // Fenster anzeigen
-            }
+            numPad.setVisible(!numPad.isVisible());
         });
     }
-
 }

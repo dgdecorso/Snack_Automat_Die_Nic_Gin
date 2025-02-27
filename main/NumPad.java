@@ -7,8 +7,9 @@ import java.awt.event.ActionListener;
 
 public class NumPad extends JFrame {
     private JTextField displayField;
-    private String enteredNumber = ""; // Speicherung der Eingabe
-
+    private String enteredNumber = "";// Speicherung der Eingabe
+    SnackItem[] item = new SnackItem[16];
+    SnackPanel sp = new SnackPanel();
     public NumPad() {
         setTitle("NumPad");
         setSize(300, 400);
@@ -74,11 +75,13 @@ public class NumPad extends JFrame {
                     displayField.setText(enteredNumber);
                 }
             }
-            
+
         }
     }
 
     private void processNumber() {
+        int index = 0;
+        double price = 0;
         if (enteredNumber.length() == 2) { // Nur wenn genau 2 Ziffern eingegeben wurden
             int y = Character.getNumericValue(enteredNumber.charAt(0));
             int x = Character.getNumericValue(enteredNumber.charAt(1));
@@ -87,11 +90,71 @@ public class NumPad extends JFrame {
             if (x >= 0 && x <= 4 && y >= 0 && y <= 4) {
                 System.out.println("Eingabe gespeichert: X=" + x + ", Y=" + y);
 
-                displayField.setText("Gespeichert: " + enteredNumber);
-                // Warte 1 Sekunde und schließe das Fenster
-                Timer timer = new Timer(1000, event -> setVisible(false));
-                timer.setRepeats(false); // Timer nur einmal ausführen
-                timer.start();
+                for (int i = 0; i < y; i++) {
+                    for (int j = 0; j < x; j++) {
+                       index++;
+                    }
+                }
+                price = sp.item[index].price;
+
+
+                displayField.setText("Preis: " + price);
+
+                if (sp.cash >= price) {
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    displayField.setText(". . .");
+                    try {
+                        Thread.sleep(175);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    displayField.setText(". . . .");
+                    try {
+                        Thread.sleep(300);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    displayField.setText(". . . . .");
+                    try {
+                        Thread.sleep(200);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    displayField.setText("Approved!");
+                    sp.fallingObject(index);
+
+                    Timer timer = new Timer(1000, event -> setVisible(false));
+                    timer.setRepeats(false); // Timer nur einmal ausführen
+                    timer.start();
+
+                } else {
+                    displayField.setText(". . .");
+                    try {
+                        Thread.sleep(175);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    displayField.setText(". . . .");
+                    try {
+                        Thread.sleep(300);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    displayField.setText(". . . . .");
+                    try {
+                        Thread.sleep(200);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    displayField.setText("Your card was declined!");
+                }
+
+                index = 0;
+
             } else if (x == 9 && y == 9) {
 
                     AdminPanel ap = new AdminPanel();
@@ -100,6 +163,7 @@ public class NumPad extends JFrame {
                 displayField.setText("Ungültig!");
                 enteredNumber = "";
             }
+
         } else {
             displayField.setText("Fehlende Ziffer!");
         }

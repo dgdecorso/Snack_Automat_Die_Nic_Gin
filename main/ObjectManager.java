@@ -64,6 +64,7 @@ public class ObjectManager {
     }
 
     public void draw(Graphics2D g2, int x, int y, int index) {
+        System.out.println("Wird geladen");
         if (index >= 0 && index < objImage.length && objImage[index] != null) {
             int screenX = getLocationX(x);
             int screenY = getLocationY(y);
