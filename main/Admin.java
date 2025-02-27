@@ -4,7 +4,7 @@ public class Admin extends AdminPanel {
     static SnackPanel sp = new SnackPanel();
 
     static int initialAmount = 10; // Anfangsbestand
-    int currentAmount; // Aktueller Bestand
+    static int currentAmount; // Aktueller Bestand
 
     public Admin() {
         // Setzt currentAmount auf den Bestand des ersten Snacks (Index 0)
@@ -15,7 +15,7 @@ public class Admin extends AdminPanel {
         }
     }
 
-    public void Refill(int index) {
+    public static void Refill(int index) {
         // Überprüfen, ob der Snack existiert
         if (sp.objectManager.snackItems.containsKey(index)) {
             sp.objectManager.snackItems.get(index).stock = initialAmount;

@@ -184,28 +184,27 @@ public class SnackPanel extends JPanel implements Runnable {
     }
 
     private void update() {
-        cash = NumPanel.getStoredNumber(cash); // Aktualisiert cash mit der neuesten gespeicherten Zahl
-        if (isFalling) {
-            // obj.fallAnimation();
-        }
+        cash = NumPanel.storedNumber; // Holt den aktuellen Preis aus NumPanel
+        repaint();
     }
+
 
     @Override
     public void paintComponent(Graphics g) {
         int index = 0;
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-
-        drawBackground(g2);
-        drawPad(g2);
-        drawPrice(g2); // Preis oben rechts anzeigen
-
         for (int y = 0; y < 4; y++) {
             for (int x = 0; x < 4; x++) {
                 obj.draw(g2, x, y, index);
                 index++;
             }
         }
+        drawBackground(g2);
+        drawPad(g2);
+        drawPrice(g2); // Preis oben rechts anzeigen
+
+
     }
 
     /**
@@ -217,13 +216,12 @@ public class SnackPanel extends JPanel implements Runnable {
 
         double cashValue;
         try {
-            cashValue = Double.parseDouble(cash);
+            cashValue = Double.parseDouble(cash); // Falls eine Zahl eingegeben wurde
         } catch (NumberFormatException e) {
-            cashValue = 0.00; // Falls `cash` keine Zahl ist, setze es auf 0.00
+            cashValue = 0.00; // Falls `cash` leer oder ungültig ist
         }
 
-        String priceText = "€" + String.format("%.2f", cashValue);
-
+        String priceText = "€" + String.format("%.2f", cashValue); // Formatiert auf 2 Nachkommastellen
         int textX = screenWidth - 95;
         int textY = 150;
         g2.drawString(priceText, textX, textY);
