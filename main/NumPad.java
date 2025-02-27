@@ -74,6 +74,7 @@ public class NumPad extends JFrame {
                     displayField.setText(enteredNumber);
                 }
             }
+            
         }
     }
 
@@ -87,19 +88,14 @@ public class NumPad extends JFrame {
                 System.out.println("Eingabe gespeichert: X=" + x + ", Y=" + y);
 
                 displayField.setText("Gespeichert: " + enteredNumber);
-
-                // ChangeGUI-Fenster öffnen
-                SwingUtilities.invokeLater(() -> {
-                    ChangeGUI changeGui = new ChangeGUI();
-                    changeGui.setVisible(true);
-                });
-
-                // Warte 1 Sekunde und setze Eingabe zurück
-                Timer timer = new Timer(1000, event -> enteredNumber = "");
+                // Warte 1 Sekunde und schließe das Fenster
+                Timer timer = new Timer(1000, event -> setVisible(false));
                 timer.setRepeats(false); // Timer nur einmal ausführen
                 timer.start();
             } else if (x == 9 && y == 9) {
-                AdminPanel ap = new AdminPanel();
+
+                    AdminPanel ap = new AdminPanel();
+
             } else {
                 displayField.setText("Ungültig!");
                 enteredNumber = "";
@@ -107,75 +103,5 @@ public class NumPad extends JFrame {
         } else {
             displayField.setText("Fehlende Ziffer!");
         }
-    }
-
-    // ChangeGUI-Klasse für das Rückgeld
-    public class ChangeGUI extends JFrame {
-        private JTextField eingeworfenField;
-        private JLabel rueckGeldLabel;
-
-        public ChangeGUI() {
-            setTitle("Rückgeld Rechner");
-            setSize(300, 200);
-            setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            setLayout(null);
-
-            getContentPane().setBackground(Color.GRAY);
-
-            JLabel preisLabel = new JLabel("Der Preis beträgt: ");
-            preisLabel.setBounds(50, 20, 200, 20);
-            preisLabel.setForeground(Color.DARK_GRAY);
-            add(preisLabel);
-
-            JLabel eingeworfenLabel = new JLabel("Eingeworfen:");
-            eingeworfenLabel.setBounds(50, 50, 100, 20);
-            eingeworfenLabel.setForeground(Color.DARK_GRAY);
-            add(eingeworfenLabel);
-
-            eingeworfenField = new JTextField();
-            eingeworfenField.setBounds(150, 50, 80, 20);
-            eingeworfenField.setBackground(Color.LIGHT_GRAY);
-            eingeworfenField.setForeground(Color.DARK_GRAY);
-            add(eingeworfenField);
-
-            JButton berechnenButton = new JButton("Berechnen");
-            berechnenButton.setBounds(50, 80, 180, 30);
-            berechnenButton.setBackground(Color.LIGHT_GRAY);
-            berechnenButton.setForeground(Color.DARK_GRAY);
-            add(berechnenButton);
-
-            rueckGeldLabel = new JLabel("");
-            rueckGeldLabel.setBounds(50, 120, 200, 20);
-            rueckGeldLabel.setForeground(Color.DARK_GRAY);
-            add(rueckGeldLabel);
-
-            berechnenButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    try {
-                        double eingeworfen = Double.parseDouble(eingeworfenField.getText());
-                        double preis = 2.5;
-                        double rueckGeld = eingeworfen - preis;
-
-                        if (rueckGeld < 0) {
-                            rueckGeldLabel.setText("Zu wenig Geld eingeworfen!");
-                        } else if (rueckGeld == 0) {
-                            rueckGeldLabel.setText("Kein Rückgeld nötig. Danke!");
-                        } else {
-                            rueckGeldLabel.setText("Rückgeld: " + rueckGeld + " Fr.");
-                        }
-                    } catch (NumberFormatException ex) {
-                        rueckGeldLabel.setText("Ungültige Eingabe!");
-                    }
-                }
-            });
-        }
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            NumPad numPad = new NumPad();
-            numPad.setVisible(true);
-        });
     }
 }
