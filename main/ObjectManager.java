@@ -72,36 +72,32 @@ public class ObjectManager {
 
             // Vergrößerte Darstellung des Snacks
             int newSize = (int) (sp.tileSize * 1);
-            g2.drawImage(objImage[index], screenX, screenY, newSize, newSize, null);
+            g2.drawImage(objImage[index], screenX, screenY, newSize, newSize, null); // Bild zeichnen
 
             // Überprüfen, ob ein Snack vorhanden ist
             if (index < sp.item.length && sp.item[index] != null) {
                 double price = sp.item[index].price;
 
-                // Positionsnummer berechnen (z. B. 11, 12, ..., 44)
-                int position = (y + 1) * 10 + (x + 1);
-
-                // Text mit Preis und Position
-                String text = price + "€ (" + position + ")";
+                // Position berechnen (Index von 1 bis 16 statt 0 bis 15)
+                int nummer = index + 1;
+                String text = nummer + " - " + price + "€";
 
                 // Schriftart setzen
-                g2.setFont(new Font("Arial", Font.BOLD, 12));
+                g2.setFont(new Font("Arial", Font.BOLD, 14));
 
-                // Schwarze Kontur für bessere Sichtbarkeit
-                g2.setColor(Color.BLACK);
-                g2.drawString(text, screenX + 1, screenY - 4);
-                g2.drawString(text, screenX - 1, screenY - 4);
-                g2.drawString(text, screenX, screenY - 3);
-                g2.drawString(text, screenX, screenY - 5);
-
-                // Weißer Text
+                // TEXT ZULETZT ZEICHNEN, DAMIT ER IM VORDERGRUND IST
                 g2.setColor(Color.WHITE);
-                g2.drawString(text, screenX, screenY - 4);
+                g2.drawString(text, screenX + 5, screenY + 15);
+
+                g2.setColor(Color.BLACK); // Schatten für besseren Kontrast
+                g2.drawString(text, screenX + 6, screenY + 16);
             }
         } else {
             System.out.println("WARNUNG: Kein Bild für Index " + index);
         }
     }
+
+
 
 
 

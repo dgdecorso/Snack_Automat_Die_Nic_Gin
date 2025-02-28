@@ -74,7 +74,7 @@ public class SnackPanel extends JPanel implements Runnable {
         padHeight = screenHeight / 5;
 
         // Lade die Pixel-Font
-        loadPixelFont();
+       // loadPixelFont();
 
         // MouseListener für NumPad-Klicks
         addMouseListener(new MouseAdapter() {
