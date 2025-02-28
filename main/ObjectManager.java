@@ -13,6 +13,7 @@ public class ObjectManager {
     public HashMap<Integer, SnackItem> snackItems; // Map für alle Snack-Objekte
     public String[][] objectNames; // 2D-Array für Namen nach Position
 
+
     public ObjectManager(SnackPanel sp) {
         this.sp = sp;
         object = new Objects[30];
@@ -51,6 +52,7 @@ public class ObjectManager {
 
             sp.item[index].name = name;
             sp.item[index].price = price;
+
 
             // Speichere das SnackItem und den Namen
 

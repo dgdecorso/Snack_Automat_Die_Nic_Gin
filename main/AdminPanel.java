@@ -50,7 +50,9 @@ public class AdminPanel extends JFrame {
                 Admin.RefillAll();
                 displayField.setText("Snacks aufgefüllt!");
             });
-        } else {
+        }
+        else
+        {
             button.addActionListener(e -> displayField.setText(displayField.getText() + text));
         }
 
